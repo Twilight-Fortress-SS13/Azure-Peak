@@ -421,9 +421,12 @@
 				return
 
 		// Makes it so people who recently broke out of grabs cannot be grabbed again
-		if(TIMER_COOLDOWN_RUNNING(M, "broke_free") && M.stat == CONSCIOUS)
+		var/grabber_wrestling_skill = 0
+		grabber_wrestling_skill = src.get_skill_level(/datum/skill/combat/wrestling)
+		if(MOB_TIMER_CHECK_OFFSET(M, "broke_free", -0.4 SECONDS * grabber_wrestling_skill) && M.stat == CONSCIOUS)
 			M.visible_message(span_warning("[M] slips from [src]'s grip."), \
 					span_warning("I slip from [src]'s grab."))
+			playsound(src.loc, 'sound/combat/grabbreak.ogg', 50, TRUE, -1)
 			log_combat(src, M, "tried grabbing", addition="passive grab")
 			return
 
@@ -1174,6 +1177,9 @@
 	L.changeNext_move(agg_grab ? CLICK_CD_GRABBING : CLICK_CD_GRABBING + 1 SECONDS)
 	playsound(src.loc, 'sound/combat/grabbreak.ogg', 50, TRUE, -1)
 	L.stop_pulling()
+
+	MOB_TIMER_SET(src, "broke_free", 5.1 SECONDS) //we start a timer on a succesful resist, we check if this timer is running and let the victim "slip" from any grab attempts
+
 	return TRUE
 
 /mob/living/proc/resist_buckle()
