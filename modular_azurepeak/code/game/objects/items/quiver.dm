@@ -19,6 +19,7 @@
 	var/max_storage = 20
 	var/list/arrows = list()
 	sewrepair = TRUE
+	item_weight = 4
 
 /obj/item/quiver/attack_turf(turf/T, mob/living/user)
 	if(arrows.len >= max_storage)

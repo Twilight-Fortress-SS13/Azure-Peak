@@ -15,6 +15,7 @@
 	sewrepair = TRUE
 	salvage_result = /obj/item/natural/hide/cured
 	unarmed_bonus = 1.1
+	item_weight = 3
 
 /obj/item/clothing/gloves/roguetown/leather/black
 	color = CLOTHING_BLACK
@@ -30,6 +31,7 @@
 	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
 	anvilrepair = null
 	sewrepair = TRUE
+	item_weight = 2
 
 /obj/item/clothing/gloves/roguetown/fingerless/shadowgloves
 	name = "fingerless gloves"

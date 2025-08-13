@@ -1,6 +1,11 @@
 /obj/item
 	var/allow_self_unequip = TRUE
 
+	///this is in KG
+	var/item_weight = 0
+	///this is a multiplier to the weight of items inside of this items contents
+	var/carry_multiplier = 1
+
 /obj/item/allow_attack_hand_drop(mob/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/C = user

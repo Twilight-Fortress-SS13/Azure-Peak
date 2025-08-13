@@ -216,7 +216,7 @@
 	var/turf/our_turf = get_turf(src)
 	if(our_turf.Distance_cardinal(get_turf(target), src) <= npc_jump_distance)
 		return FALSE
-	if(!check_armor_skill() || get_item_by_slot(SLOT_LEGCUFFED)) // don't even try if we could only make it 1 tile
+	if(get_encumbrance() >= 0.7 || get_item_by_slot(SLOT_LEGCUFFED)) // don't even try if we could only make it 1 tile
 		return FALSE
 	// Find the turf to jump to.
 	var/atom/jump_destination
@@ -930,10 +930,7 @@
 		else
 			sneak_bonus = (target.get_skill_level(/datum/skill/misc/sneaking) * 5)
 		probby -= sneak_bonus
-	if(!target.check_armor_skill())
-		probby += 85 //armor is loud as fuck
-		if (sneak_bonus)
-			probby += sneak_bonus // you don't get sneak bonus in heavy armor at all, on top of that
+	probby += 100 * target.get_encumbrance()
 	if (target.badluck(5))
 		probby += (10 - target.STALUC) * 5 // drop 5% chance for every bit of fortune we're missing
 	if (target.goodluck(5))

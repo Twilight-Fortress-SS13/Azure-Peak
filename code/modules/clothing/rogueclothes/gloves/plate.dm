@@ -16,6 +16,7 @@
 	grid_width = 64
 	grid_height = 32
 	unarmed_bonus = 1.2
+	item_weight = 7 * STEEL_MULTIPLIER
 
 /obj/item/clothing/gloves/roguetown/plate/iron
 	name = "iron plate gauntlets"
@@ -23,6 +24,7 @@
 	icon_state = "igauntlets"
 	smeltresult = /obj/item/ingot/iron
 	max_integrity = ARMOR_INT_SIDE_IRON
+	item_weight = 7 * IRON_MULTIPLIER
 
 /obj/item/clothing/gloves/roguetown/plate/aalloy
 	name = "decrepit plate gauntlets"

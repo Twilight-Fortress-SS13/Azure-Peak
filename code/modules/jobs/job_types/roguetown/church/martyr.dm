@@ -622,6 +622,7 @@
 	sellprice = 1000
 	smeltresult = /obj/item/ingot/silver
 	smelt_bar_num = 4
+	item_weight = 12 * SILVER_MULTIPLIER
 
 /obj/item/clothing/under/roguetown/platelegs/holysee
 	name = "holy silver chausses"
@@ -636,6 +637,7 @@
 	sellprice = 1000
 	smeltresult = /obj/item/ingot/silver
 	smelt_bar_num = 3
+	item_weight = 9 * SILVER_MULTIPLIER
 
 /obj/item/clothing/head/roguetown/helmet/heavy/holysee
 	name = "holy silver bascinet"

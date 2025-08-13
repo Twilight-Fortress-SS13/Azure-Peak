@@ -10,6 +10,7 @@
 	experimental_inhand = FALSE
 	grid_width = 32
 	grid_height = 64
+	item_weight = 4
 	var/overarmor
 
 /obj/item/clothing/wrists/roguetown/MiddleClick(mob/user, params)

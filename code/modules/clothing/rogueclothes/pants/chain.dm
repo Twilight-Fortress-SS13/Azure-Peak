@@ -16,6 +16,7 @@
 	l_sleeve_status = SLEEVE_NOMOD
 	resistance_flags = FIRE_PROOF
 	armor_class = ARMOR_CLASS_MEDIUM
+	item_weight = 6 * STEEL_MULTIPLIER
 
 /obj/item/clothing/under/roguetown/chainlegs/Initialize(mapload)
 	. = ..()
@@ -40,6 +41,7 @@
 	//resistance_flags = FIRE_PROOF // these ones should be burning since is cloth + metal
 	sewrepair = FALSE
 	smeltresult = /obj/item/ingot/steel
+	item_weight = 4.5 * STEEL_MULTIPLIER
 
 /obj/item/clothing/under/roguetown/splintlegs/Initialize(mapload)
 	. = ..()
@@ -64,6 +66,7 @@
 	//resistance_flags = FIRE_PROOF // these ones should be burning since is cloth + metal
 	sewrepair = FALSE
 	smeltresult = /obj/item/ingot/iron
+	item_weight = 4.5 * IRON_MULTIPLIER
 
 /obj/item/clothing/under/roguetown/brayette
 	name = "brayette"

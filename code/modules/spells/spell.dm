@@ -232,7 +232,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 		else if(ranged_ability_user.STAINT < 10)
 			var/diffy = SPELL_SCALING_THRESHOLD - ranged_ability_user.STAINT
 			newdrain = newdrain + (releasedrain * (diffy * FATIGUE_REDUCTION_PER_INT))
-		if(!ranged_ability_user.check_armor_skill())
+		if(ranged_ability_user.get_encumbrance() > 0.4)
 			newdrain += 80
 		if(newdrain > 0)
 			return newdrain

@@ -9,7 +9,7 @@
 	sleevetype = null
 	sleeved = null
 	resistance_flags = FIRE_PROOF
-	armor = ARMOR_HEAD_HELMET
+	armor = ARMOR_HEAD_HELMET_LIGHT
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	clothing_flags = CANT_SLEEP_IN
 	dynamic_hair_suffix = "+generic"
@@ -22,6 +22,7 @@
 	grid_width = 64
 	experimental_onhip = TRUE
 	experimental_inhand = TRUE
+	item_weight = 6 * STEEL_MULTIPLIER
 
 /obj/item/clothing/head/roguetown/helmet/MiddleClick(mob/user)
 	if(!ishuman(user))
@@ -56,6 +57,7 @@
 	smeltresult = /obj/item/ingot/copper
 	armor = ARMOR_HEAD_HELMET_BAD
 	max_integrity = ARMOR_INT_HELMET_LEATHER
+	item_weight = 6 * COPPER_MULTIPLIER
 
 /obj/item/clothing/head/roguetown/helmet/horned
 	name = "horned cap"
@@ -64,6 +66,7 @@
 	body_parts_covered = HEAD|HAIR
 	smeltresult = /obj/item/ingot/iron
 	max_integrity = ARMOR_INT_HELMET_IRON
+	item_weight = 6 * IRON_MULTIPLIER
 
 /obj/item/clothing/head/roguetown/helmet/winged
 	name = "winged cap"
@@ -80,7 +83,7 @@
 	desc = "A steel helmet which protects the top and sides of the head."
 	icon_state = "kettle"
 	body_parts_covered = HEAD|HAIR|EARS
-	armor = ARMOR_HEAD_HELMET
+	armor = ARMOR_HEAD_HELMET_LIGHT
 
 /obj/item/clothing/head/roguetown/helmet/kettle/iron
 	name = "iron kettle helmet"
@@ -88,6 +91,7 @@
 	icon_state = "ikettle"
 	smeltresult = /obj/item/ingot/iron
 	max_integrity = ARMOR_INT_HELMET_IRON
+	item_weight = 6 * IRON_MULTIPLIER
 
 /obj/item/clothing/head/roguetown/helmet/kettle/wide
 	name = "wide kettle helmet"
@@ -155,6 +159,7 @@
 	desc = "A iron helmet which protects the ears."
 	smeltresult = /obj/item/ingot/iron
 	max_integrity = ARMOR_INT_HELMET_IRON
+	item_weight = 6 * IRON_MULTIPLIER
 
 /obj/item/clothing/head/roguetown/helmet/sallet/visored
 	name = "visored sallet"
@@ -166,7 +171,9 @@
 	body_parts_covered = HEAD|EARS|HAIR|NOSE|EYES
 	block2add = FOV_BEHIND
 	smelt_bar_num = 2
-	armor = ARMOR_HEAD_HELMET_VISOR
+	armor = ARMOR_HEAD_HELMET_MEDIUM
+	armor_class = ARMOR_CLASS_MEDIUM
+	item_weight = 7.5 * STEEL_MULTIPLIER
 
 /obj/item/clothing/head/roguetown/helmet/sallet/visored/ComponentInitialize()
 	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), HIDEHAIR, null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Sallet. Does not hide anything when opened.
@@ -201,6 +208,7 @@
 	desc = "A iron helmet which protects the ears, nose, and eyes."
 	smeltresult = /obj/item/ingot/iron
 	max_integrity = ARMOR_INT_HELMET_IRON
+	item_weight = 7.5 * IRON_MULTIPLIER
 
 /obj/item/clothing/head/roguetown/helmet/sallet/elven
 	desc = "A steel helmet with a thin gold plating designed for Elven woodland guardians."
@@ -231,6 +239,9 @@
 	block2add = FOV_BEHIND
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 2
+	armor = ARMOR_HEAD_HELMET_MEDIUM
+	armor_class = ARMOR_CLASS_MEDIUM
+	item_weight = 7.5 * STEEL_MULTIPLIER
 
 	detail_tag = "_detail"
 	color = "#FFFFFF"
@@ -266,10 +277,12 @@
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	icon_state = "elven_barbute_full"
 	item_state = "elven_barbute_full"
-	armor = ARMOR_HEAD_HELMET
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	clothing_flags = 0
 	block2add = FOV_BEHIND
+	armor = ARMOR_HEAD_HELMET_MEDIUM
+	armor_class = ARMOR_CLASS_MEDIUM
+	item_weight = 7.5 * STEEL_MULTIPLIER
 
 /obj/item/clothing/head/roguetown/helmet/elvenbarbute/winged
 	name = "winged elven barbute"
@@ -287,6 +300,8 @@
 	flags_inv = HIDEEARS|HIDEHAIR
 	block2add = FOV_BEHIND
 	smeltresult = /obj/item/ingot/steel
+	armor = ARMOR_HEAD_HELMET_MEDIUM
+	armor_class = ARMOR_CLASS_MEDIUM
 
 /obj/item/clothing/head/roguetown/helmet/bascinet/pigface
 	name = "pigface bascinet"
@@ -301,6 +316,9 @@
 	block2add = FOV_BEHIND
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 2
+	armor = ARMOR_HEAD_HELMET_MEDIUM
+	armor_class = ARMOR_CLASS_MEDIUM
+	item_weight = 7.5 * STEEL_MULTIPLIER
 
 /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/ComponentInitialize()
 	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet
@@ -391,6 +409,9 @@
 	block2add = FOV_BEHIND
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 2
+	armor = ARMOR_HEAD_HELMET_MEDIUM
+	armor_class = ARMOR_CLASS_MEDIUM
+	item_weight = 7.5 * STEEL_MULTIPLIER
 
 /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan/attackby(obj/item/W, mob/living/user, params)
 	..()
@@ -418,18 +439,6 @@
 
 /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan/ComponentInitialize()
 	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet
-
-
-/obj/item/clothing/head/roguetown/helmet/bascinet
-	name = "bascinet"
-	desc = "A steel bascinet helmet. Though it lacks a visor for the face, it still protects the head and ears."
-	icon_state = "bascinet_novisor"
-	item_state = "bascinet_novisor"
-	emote_environment = 3
-	body_parts_covered = HEAD|HAIR|EARS
-	flags_inv = HIDEHAIR
-	block2add = null
-	smeltresult = /obj/item/ingot/steel
 
 //............... Eora Helmet ............... //
 /obj/item/clothing/head/roguetown/helmet/sallet/eoran

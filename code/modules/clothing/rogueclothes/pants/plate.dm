@@ -18,6 +18,7 @@
 	smelt_bar_num = 2
 	resistance_flags = FIRE_PROOF
 	armor_class = ARMOR_CLASS_HEAVY
+	item_weight = 9 * STEEL_MULTIPLIER
 
 /obj/item/clothing/under/roguetown/platelegs/Initialize(mapload)
 	. = ..()
@@ -30,6 +31,7 @@
 	item_state = "iplate_legs"
 	max_integrity = ARMOR_INT_LEG_IRON_PLATE
 	smeltresult = /obj/item/ingot/iron
+	item_weight = 9 * IRON_MULTIPLIER
 
 /obj/item/clothing/under/roguetown/platelegs/aalloy
 	name = "decrepit plate chausses"

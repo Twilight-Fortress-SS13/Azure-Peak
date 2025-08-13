@@ -1347,6 +1347,7 @@
 	if (ishuman(usr))
 		var/mob/living/carbon/human/H = usr
 		H.check_for_injuries(H)
+		to_chat(H, "I am [H.get_encumbrance() * 100]% Encumbered.")
 
 /atom/movable/screen/mood
 	name = "mood"
@@ -1365,6 +1366,7 @@
 		var/mob/living/carbon/human/H = usr
 		if(modifiers["left"])
 			H.check_for_injuries(H)
+			to_chat(H, "I am [H.get_encumbrance() * 100]% Encumbered")
 		if(modifiers["right"])
 			if(!H.mind)
 				return

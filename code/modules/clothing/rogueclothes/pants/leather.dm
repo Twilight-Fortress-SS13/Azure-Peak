@@ -15,6 +15,7 @@
 	l_sleeve_status = SLEEVE_NORMAL
 	armor_class = ARMOR_CLASS_LIGHT
 	salvage_amount = 1
+	item_weight = 3
 
 /obj/item/clothing/under/roguetown/trou/leather
 	name = "leather trousers"

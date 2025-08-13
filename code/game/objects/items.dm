@@ -717,6 +717,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(!silent)
 		playsound(src, drop_sound, DROP_SOUND_VOLUME, TRUE, ignore_walls = FALSE)
 	user.update_equipment_speed_mods()
+	if(isliving(user))
+		user:encumbrance_to_speed()
 	update_transform()
 
 // called just as an item is picked up (loc is not yet changed)
@@ -724,6 +726,12 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_PICKUP, user)
 	item_flags |= IN_INVENTORY
+
+// called just as an item is picked up (loc is not yet changed)
+/obj/item/proc/afterpickup(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
+	if(isliving(user))
+		user:encumbrance_to_speed()
 
 // called when "found" in pockets and storage items. Returns 1 if the search should end.
 /obj/item/proc/on_found(mob/finder)
@@ -1469,3 +1477,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			str += "<b>Sewing</b> and a needle."
 		str = span_info(str)
 		. += str
+
+/obj/item/proc/get_stored_weight()
+	var/held_weight = 0
+	for(var/obj/item/stored_item in contents)
+		held_weight += stored_item.item_weight * carry_multiplier
+
+	return held_weight

@@ -120,7 +120,7 @@
 	if(L.stamina >= L.max_stamina)
 		return FALSE
 	if(L)
-		if(H?.check_dodge_skill())
+		if(H.get_encumbrance() >= 0.7)
 			prob2defend = prob2defend + (L.STASPD * 15)
 		else
 			prob2defend = prob2defend + (L.STASPD * 10)
@@ -133,7 +133,7 @@
 			prob2defend = prob2defend + ( I.wbalance * ((U.STASPD - L.STASPD) * 10) )
 		prob2defend = prob2defend - (UH.get_skill_level(I.associated_skill) * 10)
 	if(H)
-		if(!H?.check_armor_skill() || H?.legcuffed)
+		if(H.get_encumbrance() >= 0.7 || H?.legcuffed)
 			H.Knockdown(1)
 			return FALSE
 		if(I) //the enemy attacked us with a weapon

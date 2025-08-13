@@ -19,6 +19,7 @@
 	equip_delay_other = 3 SECONDS
 	strip_delay = 6 SECONDS
 	smelt_bar_num = 4 
+	item_weight = 12 * BLACKSTEEL_MULTIPLIER
 
 /obj/item/clothing/suit/roguetown/armor/plate/blacksteel_full_plate
 	name = "ancient blacksteel plate armor"
@@ -39,6 +40,7 @@
 	equip_delay_other = 3 SECONDS
 	strip_delay = 6 SECONDS
 	smelt_bar_num = 4
+	item_weight = 12 * BLACKSTEEL_MULTIPLIER
 
 /obj/item/clothing/suit/roguetown/armor/plate/blacksteel_half_plate
 	name = "blacksteel cuirass"
@@ -53,3 +55,4 @@
 	smeltresult = /obj/item/ingot/blacksteel
 	armor_class = ARMOR_CLASS_MEDIUM
 	smelt_bar_num = 2
+	item_weight = 7 * BLACKSTEEL_MULTIPLIER

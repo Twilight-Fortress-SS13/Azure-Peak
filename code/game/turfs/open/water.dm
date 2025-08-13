@@ -101,7 +101,7 @@
 	if(swimmer.mind)
 		swimmer.mind.add_sleep_experience(/datum/skill/misc/swimming, swimmer.STAINT * 0.5)
 //	. += (swimmer.checkwornweight()*2)
-	if(!swimmer.check_armor_skill())
+	if(!swimmer.get_encumbrance() >= 0.7)
 		. += UNSKILLED_ARMOR_PENALTY
 	if(.) // this check is expensive so we only run it if we do expect to use stamina	
 		for(var/obj/structure/S in src)

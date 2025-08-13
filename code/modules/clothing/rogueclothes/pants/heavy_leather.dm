@@ -17,6 +17,7 @@
 	resistance_flags = FIRE_PROOF
 	armor_class = ARMOR_CLASS_LIGHT
 	salvage_result = /obj/item/natural/hide/cured
+	item_weight = 4
 
 /obj/item/clothing/under/roguetown/heavy_leather_pants/shorts
 	name = "hardened leather shorts"
@@ -65,6 +66,7 @@
 	armor_class = ARMOR_CLASS_LIGHT
 	color = "#262927"
 	detail_color = "#FFFFFF"
+	item_weight = 4
 
 /obj/item/clothing/under/roguetown/heavy_leather_pants/grenzelpants/attack_right(mob/user)
 	..()

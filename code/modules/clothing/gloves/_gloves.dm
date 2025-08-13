@@ -14,6 +14,7 @@
 
 	grid_width = 64
 	grid_height = 32
+	item_weight = 4
 
 /obj/item/clothing/gloves/ComponentInitialize()
 	. = ..()

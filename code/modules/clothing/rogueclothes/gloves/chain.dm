@@ -13,6 +13,7 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
 	unarmed_bonus = 1.15
+	item_weight = 7 * STEEL_MULTIPLIER
 
 /obj/item/clothing/gloves/roguetown/chain/aalloy
 	name = "decrepit chain gauntlets"
@@ -65,3 +66,4 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/iron
 	max_integrity = ARMOR_INT_SIDE_IRON
+	item_weight = 7 * IRON_MULTIPLIER

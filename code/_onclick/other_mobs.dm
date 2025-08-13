@@ -270,7 +270,7 @@
 	return TRUE
 
 /mob/living/proc/get_jump_range()
-	if(!check_armor_skill() || get_item_by_slot(SLOT_LEGCUFFED))
+	if(get_encumbrance() >= 0.7 || get_item_by_slot(SLOT_LEGCUFFED))
 		return 1
 	if(m_intent == MOVE_INTENT_RUN)
 		return 3
@@ -284,7 +284,7 @@
 	var/mob/living/carbon/human/H = src
 	if(istype(H))
 		. += H.get_complex_pain()/50
-	if(!check_armor_skill() || get_item_by_slot(SLOT_LEGCUFFED))
+	if(H.get_encumbrance() >= 0.7|| get_item_by_slot(SLOT_LEGCUFFED))
 		. += 50
 	return clamp(., 0, 100)
 
@@ -649,7 +649,7 @@
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		jadded += H.get_complex_pain()/50
-		if(!H.check_armor_skill() || H.legcuffed)
+		if(H.get_encumbrance() >= 0.7 || H.legcuffed)
 			jadded += 50
 			jrange = 1
 

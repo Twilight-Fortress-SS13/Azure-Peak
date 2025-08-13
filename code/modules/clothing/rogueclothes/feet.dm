@@ -177,6 +177,7 @@
 	armor = ARMOR_BOOTS_BAD
 	salvage_amount = 1
 	salvage_result = /obj/item/natural/hide/cured
+	item_weight = 3
 
 /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
 	name = "heavy leather boots"
@@ -246,6 +247,7 @@
 	armor = ARMOR_BOOTS_PLATED
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
+	item_weight = 7 * STEEL_MULTIPLIER
 
 /obj/item/clothing/shoes/roguetown/boots/armor/graggar
 	name = "vicious boots"
@@ -310,6 +312,7 @@
 	armor = ARMOR_BOOTS_PLATED_IRON
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/iron
+	item_weight = 7 * IRON_MULTIPLIER
 
 /obj/item/clothing/shoes/roguetown/jester
 	name = "funny shoes"
@@ -358,6 +361,7 @@
 	armor = ARMOR_BOOTS_BAD
 	salvage_amount = 1
 	salvage_result = /obj/item/natural/fur
+	item_weight = 3
 
 /obj/item/clothing/shoes/roguetown/boots/furlinedanklets
 	name = "fur lined anklets"
@@ -381,6 +385,7 @@
 	is_barefoot = TRUE
 	sewrepair = TRUE
 	armor = ARMOR_BOOTS_BAD
+	item_weight = 2
 
 /obj/item/clothing/shoes/roguetown/boots/otavan/inqboots
 	name = "inquisitorial boots"

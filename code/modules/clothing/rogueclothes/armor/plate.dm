@@ -106,6 +106,7 @@
 	equip_delay_other = 3 SECONDS
 	strip_delay = 6 SECONDS
 	smelt_bar_num = 4
+	item_weight = 12 * STEEL_MULTIPLIER
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/iron
 	name = "iron plate armor"
@@ -113,6 +114,7 @@
 	desc = "Full iron plate armor. Slow to don and doff without the aid of a good squire."
 	smeltresult = /obj/item/ingot/iron
 	max_integrity = ARMOR_INT_CHEST_PLATE_IRON
+	item_weight = 12 * IRON_MULTIPLIER
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/fluted
 	name = "fluted plate"
@@ -310,6 +312,7 @@
 	smeltresult = /obj/item/ingot/steel
 	armor_class = ARMOR_CLASS_MEDIUM
 	smelt_bar_num = 2
+	item_weight = 7 * STEEL_MULTIPLIER
 
 /obj/item/clothing/suit/roguetown/armor/plate/half/fencer
 	name = "fencer's cuirass"
@@ -365,6 +368,7 @@
 	max_integrity = ARMOR_INT_CHEST_MEDIUM_IRON
 	smeltresult = /obj/item/ingot/iron
 	smelt_bar_num = 2
+	item_weight = 7 * IRON_MULTIPLIER
 
 /obj/item/clothing/suit/roguetown/armor/plate/half/copper
 	name = "heart protector"
@@ -376,6 +380,7 @@
 	body_parts_covered = CHEST
 	armor_class = ARMOR_CLASS_LIGHT
 	smelt_bar_num = 2
+	item_weight = 5.5 * COPPER_MULTIPLIER
 
 /obj/item/clothing/suit/roguetown/armor/plate/half/elven
 	name = "elven guardian cuirass"
@@ -395,6 +400,7 @@
 	equip_delay_self = 4 SECONDS
 	armor_class = ARMOR_CLASS_MEDIUM
 	smelt_bar_num = 2
+	item_weight = 7
 
 /obj/item/clothing/suit/roguetown/armor/plate/scale/steppe
 	name = "steel steppesman hatanga"
