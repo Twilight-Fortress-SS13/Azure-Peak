@@ -2,7 +2,7 @@
 	name = "chain gauntlets"
 	desc = "Gauntlets made of interlinked steel rings. They offer decent protection against common weaponries, except for arrows."
 	icon_state = "cgloves"
-	armor = ARMOR_GLOVES_CHAIN
+	armor = ARMOR_MAILLE
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT)
 	resistance_flags = FIRE_PROOF
 	blocksound = CHAINHIT
@@ -10,6 +10,8 @@
 	blade_dulling = DULLING_BASHCHOP
 	break_sound = 'sound/foley/breaksound.ogg'
 	drop_sound = 'sound/foley/dropsound/chain_drop.ogg'
+	pickup_sound = 'sound/foley/equip/equip_armor_chain.ogg'
+	equip_sound = 'sound/foley/equip/equip_armor_chain.ogg'
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
 	unarmed_bonus = 1.15

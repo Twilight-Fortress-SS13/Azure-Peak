@@ -54,12 +54,12 @@
 					if(!R.subtype_reqs && (B in subtypesof(A)))
 						continue
 					if (R.blacklist.Find(B))
-						testing("foundinblacklist")
+
 						continue
 					if(contents[B] >= R.reqs[A])
 						continue main_loop
 					else
-						testing("removecontent")
+
 						needed_amount -= contents[B]
 						if(needed_amount <= 0)
 							continue main_loop
@@ -239,11 +239,11 @@
 				continue
 			if(R.structurecraft && istype(S, R.structurecraft))
 				continue
-			if(S.density)
+			if(S.density && !(R.ignoredensity))
 				to_chat(user, span_warning("Something is in the way."))
 				return
 		for(var/obj/machinery/M in T)
-			if(M.density)
+			if(M.density && !(R.ignoredensity))
 				to_chat(user, span_warning("Something is in the way."))
 				return
 	if(R.req_table)
@@ -503,6 +503,8 @@
 
 		if(!R.always_availible && !(R.type in user?.mind?.learned_recipes)) //User doesn't actually know how to make this.
 			continue
+		if(R.required_tech_node && !R.tech_unlocked)
+			continue
 
 		craftability[R.name] = check_contents(R, surroundings)
 
@@ -521,6 +523,8 @@
 			continue
 
 		if(!R.always_availible && !(R.type in user?.mind?.learned_recipes)) //User doesn't actually know how to make this.
+			continue
+		if(R.required_tech_node && !R.tech_unlocked)
 			continue
 		var/category
 		if(R.skillcraft)
@@ -636,6 +640,8 @@
 	for(var/rec in GLOB.crafting_recipes)
 		var/datum/crafting_recipe/R = rec
 		if(!R.always_availible && !(R.type in user?.mind?.learned_recipes)) //User doesn't actually know how to make this.
+			continue
+		if(R.required_tech_node && !R.tech_unlocked)
 			continue
 
 		if(check_contents(R, surroundings))

@@ -27,6 +27,10 @@
 	abstract_type = /datum/anvil_recipe/tools/tin
 	craftdiff = SKILL_LEVEL_NOVICE
 
+/datum/anvil_recipe/tools/blacksteel
+	abstract_type = /datum/anvil_recipe/tools/blacksteel
+	craftdiff = SKILL_LEVEL_MASTER
+
 // --------- Copper -----------
 /datum/anvil_recipe/tools/copper/sickle
 	name = "Sickle, Copper (+1 Stick)"
@@ -176,12 +180,6 @@
 
 // --------- IRON -----------
 
-/datum/anvil_recipe/tools/iron/chain
-	name = "Chains (x2)"
-	req_bar = /obj/item/ingot/iron
-	created_item = /obj/item/rope/chain
-	createditem_num = 2
-
 /datum/anvil_recipe/tools/iron/blowrod
 	name = "Glass Blowing Rod"
 	req_bar = /obj/item/ingot/iron
@@ -309,12 +307,6 @@
 	created_item = /obj/item/rogueweapon/thresher
 	i_type = "Tools"
 
-/datum/anvil_recipe/tools/iron/scissors
-	name = "Scissors, Iron"
-	req_bar = /obj/item/ingot/iron
-	created_item = /obj/item/rogueweapon/huntingknife/scissors
-	i_type = "Tools"
-
 /datum/anvil_recipe/tools/iron/headhook
 	name = "Headhook, Iron (+2 Fibers)"
 	req_bar = /obj/item/ingot/iron
@@ -355,13 +347,6 @@
 	created_item = /obj/item/rogueweapon/huntingknife/cleaver
 	createditem_num = 1
 
-/datum/anvil_recipe/tools/steel/scissors
-	name = "Scissors, Steel"
-	req_bar = /obj/item/ingot/steel
-	created_item = /obj/item/rogueweapon/huntingknife/scissors/steel
-	i_type = "Tools"
-
-
 // --------- SILVER -----------
 
 /datum/anvil_recipe/tools/silver/cups
@@ -371,9 +356,9 @@
 	createditem_num = 3
 
 /datum/anvil_recipe/tools/silver/shovel
-	name = "Shovel, Silver (+1 Silver, +1 Small Log)"
+	name = "Shovel, Silver (+1 Small Log)"
 	req_bar = /obj/item/ingot/silver
-	additional_items = list(/obj/item/ingot/silver, /obj/item/grown/log/tree/small)
+	additional_items = list(/obj/item/grown/log/tree/small)
 	created_item = /obj/item/rogueweapon/shovel/silver
 
 // --------- GOLD RECIPES-----------
@@ -508,3 +493,106 @@
 	created_item = /obj/item/mold/plate
 	craftdiff = SKILL_LEVEL_MASTER
 	i_type = "Casting"
+
+// --------- HEARTBEAST TOOLS -----------
+/datum/anvil_recipe/tools/heartbeast_vials
+	name = "Blood vials"
+	req_bar = /obj/item/ingot/copper
+	created_item = /obj/item/heart_blood_vial
+	craftdiff = SKILL_LEVEL_APPRENTICE
+	createditem_num = 5
+
+/datum/anvil_recipe/tools/heartbeast_canisters
+	name = "Blood canisters"
+	req_bar = /obj/item/ingot/copper
+	created_item = /obj/item/heart_blood_canister
+	craftdiff = SKILL_LEVEL_APPRENTICE
+	createditem_num = 2
+
+/datum/anvil_recipe/tools/aspect_canisters
+	name = "Aspect canisters"
+	req_bar = /obj/item/ingot/copper
+	created_item = /obj/item/heart_canister
+	craftdiff = SKILL_LEVEL_APPRENTICE
+	createditem_num = 3
+/datum/anvil_recipe/tools/bowl/aalloy
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/reagent_containers/glass/bowl/aalloy
+
+
+// --------- CASTING TOOLS -----------
+
+/datum/anvil_recipe/tools/crucible
+	name = "Crucible"
+	req_bar = /obj/item/ingot/steel
+	additional_items = list(/obj/item/ingot/steel)
+	created_item = /obj/item/reagent_containers/glass/crucible
+	craftdiff = 5
+	i_type = "Casting"
+
+/datum/anvil_recipe/tools/sprue_funnel
+	name = "Sprue and Funnel"
+	req_bar = /obj/item/ingot/steel
+	created_item = /obj/item/sprue_funnel
+	craftdiff = 5
+	i_type = "Casting"
+
+/datum/anvil_recipe/tools/mold_axe
+	name = "Axe Blade Mold"
+	req_bar = /obj/item/ingot/steel
+	created_item = /obj/item/mold/axe
+	craftdiff = 5
+	i_type = "Casting"
+
+/datum/anvil_recipe/tools/mold_sword
+	name = "Sword Blade Mold"
+	req_bar = /obj/item/ingot/steel
+	created_item = /obj/item/mold/sword
+	craftdiff = 5
+	i_type = "Casting"
+
+/datum/anvil_recipe/tools/mold_knife
+	name = "Knife Blade Mold"
+	req_bar = /obj/item/ingot/steel
+	created_item = /obj/item/mold/knife
+	craftdiff = 5
+	i_type = "Casting"
+
+/datum/anvil_recipe/tools/mold_mace
+	name = "Mace Head Mold"
+	req_bar = /obj/item/ingot/steel
+	created_item = /obj/item/mold/mace
+	craftdiff = 5
+	i_type = "Casting"
+
+/datum/anvil_recipe/tools/mold_polearm
+	name = "Polearm Blade Mold"
+	req_bar = /obj/item/ingot/steel
+	created_item = /obj/item/mold/polearm
+	craftdiff = 5
+	i_type = "Casting"
+
+/datum/anvil_recipe/tools/mold_plate
+	name = "Plate Mold"
+	req_bar = /obj/item/ingot/steel
+	created_item = /obj/item/mold/plate
+	craftdiff = 5
+	i_type = "Casting"
+
+//black steel tools
+/datum/anvil_recipe/tools/blacksteel/hammer
+	name = "Blacksteel hammer (+1 Stick)"
+	req_bar = /obj/item/ingot/blacksteel
+	additional_items = list(/obj/item/grown/log/tree/stick)
+	created_item = /obj/item/rogueweapon/hammer/blacksteel
+
+/datum/anvil_recipe/tools/blacksteel/pick
+	name = "Blacksteel Pickaxe (+1 Stick)"
+	req_bar = /obj/item/ingot/blacksteel
+	additional_items = list(/obj/item/grown/log/tree/stick)
+	created_item = /obj/item/rogueweapon/pick/blacksteel
+
+/datum/anvil_recipe/tools/blacksteel/tongs
+	name = "Blacksteel Tongs"
+	req_bar = /obj/item/ingot/blacksteel
+	created_item = /obj/item/rogueweapon/tongs/blacksteel

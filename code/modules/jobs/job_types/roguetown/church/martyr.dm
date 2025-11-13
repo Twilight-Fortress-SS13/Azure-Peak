@@ -496,7 +496,7 @@
 	)
 
 /datum/outfit/job/roguetown/martyr
-	job_bitflag = BITFLAG_CHURCH
+	job_bitflag = BITFLAG_HOLY_WARRIOR
 
 /datum/outfit/job/roguetown/martyr/basic/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -521,6 +521,7 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
+	SStreasury.give_money_account(ECONOMIC_UPPER_CLASS, H, "Church Funding.")
 
 
 /obj/item/rogueweapon/sword/long/martyr

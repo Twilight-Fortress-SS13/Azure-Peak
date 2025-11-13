@@ -12,7 +12,7 @@
 	var/throw_speed = 1 //How many tiles to move per ds when being thrown. Float values are fully supported
 	var/throw_range = 7
 	var/mob/pulledby = null
-	var/initial_language_holder = /datum/language_holder
+	var/initial_language_holder = /datum/language_holder/basic
 	var/datum/language_holder/language_holder
 	var/verb_say = "says"
 	var/verb_ask = "asks"
@@ -144,7 +144,7 @@
 	return ..()
 
 /atom/movable/proc/start_pulling(atom/movable/AM, state, force = move_force, supress_message = FALSE, obj/item/item_override)
-	testing("startpulling target: [AM]")
+
 	if(QDELETED(AM))
 		return FALSE
 	if(!(AM.can_be_pulled(src, state, force)))
@@ -176,17 +176,26 @@
 		if(M.doing)
 			M.doing = FALSE
 		if(!supress_message)
-			M.visible_message("<span class='warning'>[src] grabs [M].</span>", \
-				"<span class='danger'>[src] grabs you.</span>")
+			M.visible_message("<span class='warning'>[src] [M.cmode ? "<b>clings</b> onto" : "grabs"] [M].</span>", \
+				"<span class='danger'>[src] grabs onto you.</span>")
+		if(isliving(src))
+			var/mob/living/L = src
+			if(M.cmode || L.cmode)	//We're in combat, so we apply clickcds
+				var/clickcd = CLICK_CD_TRACKING
+				var/spdbonus = (10 - L.get_stat(STATKEY_SPD)) * 2
+				clickcd -= spdbonus
+				if(M.mind)	//No clickcd if we're grabbing a mindless mob, just frag the stupid AI
+					L.changeNext_move(clickcd)
+				M.changeNext_move(CLICK_CD_HEAVY)
 	if(istype(AM, /mob/living/simple_animal))
 		var/mob/living/simple_animal/simple_animal = AM
 		simple_animal.toggle_ai(AI_ON)
 	return TRUE
 
 /atom/movable/proc/stop_pulling(forced = TRUE)
-	testing("stoppull1")
+
 	if(pulling)
-		testing("stoppull2")
+
 		if(pulling != src)
 			pulling.pulledby = null
 			var/mob/living/ex_pulled = pulling
@@ -304,17 +313,20 @@
 
 /atom/movable/Move(atom/newloc, direct, glide_size_override = 0)
 	var/atom/movable/pullee = pulling
+	var/mob/living/pulled
 	var/turf/T = loc
 	if(!moving_from_pull)
 		check_pulling()
 	if(!loc || !newloc)
 		return FALSE
+	if(istype(pulledby, /mob/living))
+		pulled = pulledby
 	var/atom/oldloc = loc
 	var/direction_to_move = direct
 
 //Early override for some cases like diagonal movement
 	if(glide_size_override)
-		testing("GSO 1 [glide_size_override]")
+
 		set_glide_size(glide_size_override)
 
 	if(loc != newloc)
@@ -387,6 +399,16 @@
 
 	if(.)
 		Moved(oldloc, direct)
+	if(. && pulled && pulledby == pulled && pulled.cmode && pulled.grab_state < GRAB_AGGRESSIVE) //NICHE case of being in a first tier grab state.
+		if(pulledby.anchored)
+			pulledby.stop_pulling()
+		else
+			var/pull_dir = get_dir(src, pulledby)
+			//puller and pullee more than one tile away or in diagonal position
+			if(get_dist(src, pulledby) > 1 || (moving_diagonally != SECOND_DIAG_STEP && ((pull_dir - 1) & pull_dir)))
+				pulledby.moving_from_pull = src
+				pulledby.Move(T, get_dir(pulledby, T), glide_size) //the pullee tries to reach our previous position
+				pulledby.moving_from_pull = null
 	if(. && pulling && pulling == pullee && pulling != moving_from_pull) //we were pulling a thing and didn't lose it during our move.
 		if(pulling.anchored)
 			stop_pulling()
@@ -402,7 +424,7 @@
 	//glide_size strangely enough can change mid movement animation and update correctly while the animation is playing
 	//This means that if you don't override it late like this, it will just be set back by the movement update that's called when you move turfs.
 	if(glide_size_override)
-		testing("GSO 2 [glide_size_override]")
+
 		set_glide_size(glide_size_override)
 
 	last_move = direct
@@ -439,7 +461,6 @@
 	return TRUE
 
 /atom/movable/Destroy(force)
-	QDEL_NULL(proximity_monitor)
 	QDEL_NULL(language_holder)
 
 	unbuckle_all_mobs(force=1)
@@ -478,16 +499,6 @@
 //oldloc = old location on atom, inserted when forceMove is called and ONLY when forceMove is called!
 /atom/movable/Crossed(atom/movable/AM, oldloc)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_CROSSED, AM)
-
-/atom/movable/Uncross(atom/movable/AM, atom/newloc)
-	. = ..()
-	if(SEND_SIGNAL(src, COMSIG_MOVABLE_UNCROSS, AM) & COMPONENT_MOVABLE_BLOCK_UNCROSS)
-		return FALSE
-	if(isturf(newloc) && !CheckExit(AM, newloc))
-		return FALSE
-
-/atom/movable/Uncrossed(atom/movable/AM)
-	SEND_SIGNAL(src, COMSIG_MOVABLE_UNCROSSED, AM)
 
 /atom/movable/Bump(atom/A)
 	if(!A)

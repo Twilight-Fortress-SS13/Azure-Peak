@@ -125,6 +125,9 @@
 	desc = "Offers superior coverage to a simple gorget, though it sacrifices some protection in return."
 	icon_state = "chaincoif"
 	item_state = "chaincoif"
+	drop_sound = 'sound/foley/dropsound/chain_drop.ogg'
+	pickup_sound = 'sound/foley/equip/equip_armor_chain.ogg'
+	equip_sound = 'sound/foley/equip/equip_armor_chain.ogg'
 	flags_inv = HIDEHAIR
 	armor = ARMOR_MAILLE
 	max_integrity = ARMOR_INT_SIDE_STEEL
@@ -166,7 +169,7 @@
 	flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
 
 /obj/item/clothing/neck/roguetown/chaincoif/chainmantle/ComponentInitialize()
-	AddComponent(/datum/component/adjustable_clothing, (NECK|MOUTH), null, null, 'sound/foley/equip/equip_armor_chain.ogg', null, (UPD_HEAD|UPD_MASK|UPD_NECK))	//Chain coif.
+	AddComponent(/datum/component/adjustable_clothing, (NECK), null, null, 'sound/foley/equip/equip_armor_chain.ogg', null, (UPD_HEAD|UPD_MASK|UPD_NECK))	//Chain coif.
 
 /obj/item/clothing/neck/roguetown/chaincoif/iron
 	name = "iron chain coif"
@@ -223,16 +226,22 @@
 	name = "bevor"
 	desc = "A series of steel plates designed to protect the neck."
 	icon_state = "bevor"
-	armor = ARMOR_BEVOR
+	armor = ARMOR_PLATE
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
-
+	equip_sound = 'sound/foley/equip/equip_armor.ogg'
+	drop_sound = 'sound/foley/dropsound/armor_drop.ogg'
 	max_integrity = ARMOR_INT_SIDE_STEEL
 	resistance_flags = FIRE_PROOF
 	slot_flags = ITEM_SLOT_NECK
 	body_parts_covered = NECK|MOUTH|NOSE
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
+	adjustable = CAN_CADJUST
+	toggle_icon_state = TRUE
 	blocksound = PLATEHIT
+
+/obj/item/clothing/neck/roguetown/bevor/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing, NECK, null, null, 'sound/items/visor.ogg', null, (UPD_HEAD|UPD_MASK|UPD_NECK)) // adjustable falling buffe for the bevor
 
 /obj/item/clothing/neck/roguetown/bevor/iron
 	name = "iron bevor"
@@ -246,9 +255,11 @@
 	name = "gorget"
 	desc = "A series of iron plates designed to protect the neck."
 	icon_state = "gorget"
-	armor = ARMOR_GORGET
+	armor = ARMOR_PLATE
 	smeltresult = /obj/item/ingot/iron
 	anvilrepair = /datum/skill/craft/armorsmithing
+	equip_sound = 'sound/foley/equip/equip_armor.ogg'
+	drop_sound = 'sound/foley/dropsound/armor_drop.ogg'
 	max_integrity = ARMOR_INT_SIDE_IRON
 	resistance_flags = FIRE_PROOF
 	body_parts_inherent = NECK
@@ -270,13 +281,13 @@
 	name = "neck protector"
 	icon_state = "copperneck"
 	desc = "An antique and simple protection for the neck, used more as an accessory by the common folk. But poor protection is still better than nothing."
-	armor = ARMOR_NECK_BAD
+	armor = ARMOR_PLATE_BAD
 	smeltresult = /obj/item/ingot/copper
 
 /obj/item/clothing/neck/roguetown/fencerguard
 	name = "fencing guard"
 	icon_state = "fencercollar"
-	armor = ARMOR_BEVOR
+	armor = ARMOR_PLATE
 	smeltresult = /obj/item/ingot/steel
 	anvilrepair = /datum/skill/craft/armorsmithing
 	max_integrity = ARMOR_INT_SIDE_STEEL
@@ -314,10 +325,10 @@
 		if(get_detail_color())
 			pic.color = get_detail_color()
 		add_overlay(pic)
-		
+
 /obj/item/clothing/neck/roguetown/fencerguard/Initialize()
-	. = ..()		
-	update_icon()		
+	. = ..()
+	update_icon()
 
 /obj/item/clothing/neck/roguetown/gorget/forlorncollar
 	name = "forlorn collar"
@@ -329,6 +340,11 @@
 	smeltresult = /obj/item/ingot/steel
 	max_integrity = ARMOR_INT_SIDE_STEEL
 	icon_state = "sgorget"
+
+/obj/item/clothing/neck/roguetown/gorget/steel/kazengun
+	name = "kazengunite gorget"
+	desc = "A series of interlocking rings of metal set around the throat. Used by the kouken of Kazengun for precisely the same reason as the knights of Psydonia."
+	icon_state = "kazengunneckguard"
 
 /obj/item/clothing/neck/roguetown/gorget/paalloy
 	name = "ancient gorget"
@@ -407,10 +423,17 @@
 	color = "#bb9696"
 	resistance_flags = FIRE_PROOF
 
+/obj/item/clothing/neck/roguetown/psicross/inhumen/iron
+	name = "inverted psycross"
+	desc = "A symbol of progress from an era that had reason to believe in it."
+	icon_state = "zcross_iron"
+	resistance_flags = FIRE_PROOF
+
 /obj/item/clothing/neck/roguetown/psicross/undivided
 	name = "amulet of Ten"
 	desc = "The Ten eternal, strength in unity. Stalwart for centuries against the darkness."
 	icon_state = "undivided"
+	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HIP|ITEM_SLOT_WRISTS|ITEM_SLOT_RING
 
 /obj/item/clothing/neck/roguetown/psicross/astrata
 	name = "amulet of Astrata"
@@ -426,6 +449,8 @@
 	name = "amulet of Abyssor"
 	desc = "To fear the unknown is to turn away from the greatest mysteries of all."
 	icon_state = "abyssor"
+	salvage_result = /obj/item/pearl/blue
+	salvage_amount = 1
 
 /obj/item/clothing/neck/roguetown/psicross/dendor
 	name = "amulet of Dendor"
@@ -463,6 +488,8 @@
 	icon_state = "psycross_w"
 	item_state = "psycross_w"
 	sellprice = 0
+	salvage_result = /obj/item/grown/log/tree/stick
+	salvage_amount = 1
 
 /obj/item/clothing/neck/roguetown/psicross/silver
 	name = "silver psycross"
@@ -486,18 +513,24 @@
 	icon_state = "pearlcross"
 	desc = "An amulet made of white pearls, usually worn by fishers or sailors."
 	sellprice = 80
+	salvage_result = /obj/item/pearl
+	salvage_amount = 3 // Pearls are easy to cut off from an amulet
 
 /obj/item/clothing/neck/roguetown/psicross/bpearl
 	name = "blue pearl amulet"
 	icon_state = "bpearlcross"
 	desc = "An amulet made of rare blue pearls, usually worn by priests and worshippers of Abyssor, or as lucky charms for captains of ships."
 	sellprice = 220
+	salvage_result = /obj/item/pearl/blue
+	salvage_amount = 3 // Pearls are easy to cut off from an amulet
 
 /obj/item/clothing/neck/roguetown/psicross/shell
 	name = "oyster shell necklace"
 	icon_state = "oyster_necklace"
 	desc = "A necklace of strung-up sea shells, the calming noise they make when they clack together is reminiscent of a shellfish's claws. They remind you that while men no longer live in water, Abyssor will always remember our origins."
 	sellprice = 25
+	salvage_result = /obj/item/oystershell
+	salvage_amount = 5
 
 /obj/item/clothing/neck/roguetown/psicross/shell/bracelet
 	name = "shell bracelet"
@@ -505,6 +538,8 @@
 	desc = "A beaded bracelet made from sea shells, their rough exterior and glossy interior reminding you that Abyssor's children hide the best gifts at the deepest spots beneath the waves."
 	sellprice = 15
 	slot_flags = ITEM_SLOT_WRISTS
+	salvage_result = /obj/item/oystershell
+	salvage_amount = 3
 
 /obj/item/clothing/neck/roguetown/talkstone
 	name = "talkstone"
@@ -605,6 +640,7 @@
 	item_state = "collar"
 	resistance_flags = FIRE_PROOF
 	dropshrink = 0.5
+	salvage_result = null
 
 /obj/item/clothing/neck/roguetown/collar/forlorn
 	name = "light forlorn collar"
@@ -650,6 +686,8 @@
 	grid_width = 32
 	grid_height = 32
 	var/goodluckactivated = FALSE
+	salvage_result = /obj/item/natural/fibers
+	salvage_result = 1
 
 /obj/item/clothing/neck/roguetown/luckcharm/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
@@ -697,7 +735,7 @@
 	. = ..()
 	if(slot == SLOT_NECK)
 		active_item = TRUE
-		to_chat(user, span_hypnophrase("..the warmth flows through my veins, yet I do not burn; in fact, my mind feels clearer than ever before.. </br>..glowing runes race past my eyes, gradually deciphering into the forge's greatest secrets.. </br>'BLACKSTEEL AND GOLD, SAFFIRA AND BLORTZ - BOUND WITH A PSICROSS O' SILVER, TO FOSTER THE DRAGON'S FURY.' </br>'FOUR ENCHANTED RINGS, BOUND IN SILVER. A GEMERALD, ONYX, AMYTHORTZ, RONTZ - OMNIPOTENT, TOGETHER. </br>'FIVE SLABS OF SILVER, THE REMAINS OF A DRACONIC RING AND WEEPING PSICROSS, A GREAT LOG, AND WHAT LIES WITHIN THIS AMULET; TO SLAY VHESLYN'S DAEMONS.'"))
+		to_chat(user, span_hypnophrase("..the warmth flows through my veins, yet I do not burn; in fact, my mind feels clearer than ever before.. </br>..glowing runes race past my eyes, gradually deciphering into the forge's greatest secrets..  </br>  </br>'BLACKSTEEL AND GOLD, SAFFIRA AND BLORTZ - BOUND WITH A PSICROSS O' SILVER, TO FOSTER THE DRAGON'S FURY.'  </br>  </br>'FOUR ENCHANTED RINGS, BOUND IN SILVER. A GEMERALD, ONYX, AMYTHORTZ, RONTZ - OMNIPOTENT, TOGETHER.'  </br>  </br>'AN INGOT-CATALYST, A GREATSWORD - EACH - OF GILBRANZE AND SILVER, THE REMAINS OF A DRACONIC RING AND WEEPING PSICROSS, AND WHAT LIES WITHIN THIS AMULET: TO SLAY VHESLYN'S DAEMONS.'"))
 		user.change_stat(STATKEY_INT, 3)
 		user.change_stat(STATKEY_LCK, 3)
 		user.change_stat(STATKEY_STR, -3)
@@ -744,7 +782,7 @@
 		user.change_stat(STATKEY_STR, 3)
 		user.change_stat(STATKEY_CON, -3)
 		user.change_stat(STATKEY_WIL, 3)
-		ADD_TRAIT(user, TRAIT_SCHIZO_AMBIENCE, TRAIT_GENERIC) //Imitates the fact that you are, in fact, going bonkers.
+		ADD_TRAIT(user, TRAIT_PSYCHOSIS, TRAIT_GENERIC) //Imitates the fact that you are, in fact, going bonkers.
 		ADD_TRAIT(user, TRAIT_NOCSHADES, TRAIT_GENERIC) //Roughly ~30% reduced vision with a sharp red overlay. Provides night vision in the visible tiles.
 		ADD_TRAIT(user, TRAIT_DNR, TRAIT_GENERIC) //If you die while the necklace's on, that's it. Technically saveable if someone knows to remove the necklace, before attempting resurrection.
 		ADD_TRAIT(user, TRAIT_STRONGKICK, TRAIT_GENERIC)
@@ -758,7 +796,7 @@
 		user.change_stat(STATKEY_STR, -3)
 		user.change_stat(STATKEY_CON, 3)
 		user.change_stat(STATKEY_WIL, -3)
-		REMOVE_TRAIT(user, TRAIT_SCHIZO_AMBIENCE, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_PSYCHOSIS, TRAIT_GENERIC)
 		REMOVE_TRAIT(user, TRAIT_NOCSHADES, TRAIT_GENERIC)
 		REMOVE_TRAIT(user, TRAIT_DNR, TRAIT_GENERIC)
 		REMOVE_TRAIT(user, TRAIT_STRONGKICK, TRAIT_GENERIC)

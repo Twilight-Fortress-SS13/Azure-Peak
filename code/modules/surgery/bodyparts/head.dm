@@ -52,6 +52,11 @@
 	/// Brainkill means that this head is considered dead and revival is impossible
 	var/brainkill = FALSE
 
+/obj/item/bodypart/head/examine()
+	. = ..()
+	if(sellprice)
+		. += span_notice("This head seems to be wanted by the Judiciary of Azuria. It can be sold at the merchant or a HEADEATER.")
+
 /obj/item/bodypart/head/grabbedintents(mob/living/user, precise)
 	var/used_limb = precise
 	switch(used_limb)
@@ -220,6 +225,10 @@
 
 			if(eyes.eye_color)
 				eyes_overlay.color = "#" + eyes.eye_color
+
+/obj/item/bodypart/head/MiddleClick(mob/living/user, params)
+	to_chat(user, span_notice("You contemplate carving what little scraps of meat you can from \the [src], but then think better of it. Probably worth something to someone, somewhere..."))
+	return
 
 /obj/item/bodypart/head/monkey
 	icon = 'icons/mob/animal_parts.dmi'

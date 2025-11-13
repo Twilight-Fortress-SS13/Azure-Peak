@@ -17,7 +17,7 @@
 
 /datum/anvil_recipe/weapons/bronze
 	abstract_type = /datum/anvil_recipe/weapons/bronze
-	craftdiff = SKILL_LEVEL_APPRENTICE
+	craftdiff = SKILL_LEVEL_NOVICE //Situationally better than iron, but far more limited in terms of recipes and availability. 
 
 /datum/anvil_recipe/weapons/iron
 	abstract_type = /datum/anvil_recipe/weapons/iron
@@ -39,8 +39,8 @@
 	abstract_type = /datum/anvil_recipe/weapons/psy
 	craftdiff = SKILL_LEVEL_MASTER
 
-/datum/anvil_recipe/weapons/holy
-	abstract_type = /datum/anvil_recipe/weapons/holy
+/datum/anvil_recipe/weapons/holysteel
+	abstract_type = /datum/anvil_recipe/weapons/holysteel
 	craftdiff = SKILL_LEVEL_MASTER
 
 /datum/anvil_recipe/weapons/blacksteel
@@ -256,6 +256,61 @@
 	additional_items = list(/obj/item/ingot/copper)
 	created_item = /obj/item/rogueweapon/sword/long/rhomphaia/copper
 
+// BRONZE
+
+/datum/anvil_recipe/weapons/bronze/katar
+	name = "Katar, Bronze"
+	req_bar = /obj/item/ingot/bronze
+	created_item = /obj/item/rogueweapon/katar/bronze
+
+/datum/anvil_recipe/weapons/bronze/bronzeknuckle
+	name = "Knuckledusters, Bronze"
+	req_bar = /obj/item/ingot/bronze
+	created_item = /obj/item/rogueweapon/knuckles/bronzeknuckles
+
+/datum/anvil_recipe/weapons/bronze/gladius
+	name = "Gladius, Bronze"
+	req_bar = /obj/item/ingot/bronze
+	created_item = /obj/item/rogueweapon/sword/short/gladius
+
+/datum/anvil_recipe/weapons/bronze/sword
+	name = "Sword, Bronze"
+	req_bar = /obj/item/ingot/bronze
+	created_item = /obj/item/rogueweapon/sword/bronze
+
+/datum/anvil_recipe/weapons/bronze/axe
+	name = "Axe, Bronze"
+	req_bar = /obj/item/ingot/bronze
+	created_item = /obj/item/rogueweapon/stoneaxe/woodcut/bronze
+
+/datum/anvil_recipe/weapons/bronze/mace
+	name = "Mace, Bronze"
+	req_bar = /obj/item/ingot/bronze
+	created_item = /obj/item/rogueweapon/mace/bronze
+
+/datum/anvil_recipe/weapons/bronze/dagger
+	name = "Dagger, Bronze"
+	req_bar = /obj/item/ingot/bronze
+	created_item = /obj/item/rogueweapon/huntingknife/bronze
+
+/datum/anvil_recipe/weapons/bronze/whip
+	name = "Whip, Bronze-Tipped (+3 Cured Leather)"
+	req_bar = /obj/item/ingot/bronze
+	additional_items = list(/obj/item/natural/hide/cured, /obj/item/natural/hide/cured, /obj/item/natural/hide/cured)
+	created_item = /obj/item/rogueweapon/whip/bronze
+
+/datum/anvil_recipe/weapons/bronze/spear
+	name = "Spear, Bronze (+1 Bronze, +1 Small Log)"
+	req_bar = /obj/item/ingot/bronze
+	additional_items = list(/obj/item/ingot/bronze, /obj/item/grown/log/tree/small)
+	created_item = /obj/item/rogueweapon/spear/bronze
+
+/datum/anvil_recipe/weapons/bronze/trident
+	name = "Trident, Bronze (+1 Steel, +1 Iron, +1 Small Log)"
+	req_bar = /obj/item/ingot/bronze
+	req_blade = /obj/item/blade/steel_polearm
+	additional_items = list(/obj/item/ingot/steel, /obj/item/ingot/iron, /obj/item/grown/log/tree/small)
+	created_item = /obj/item/rogueweapon/spear/trident
 
 // IRON
 
@@ -388,6 +443,13 @@
 	additional_items = list(/obj/item/grown/log/tree/small)
 	created_item = /obj/item/ammo_casing/caseless/rogue/javelin
 	createditem_num = 2
+
+/datum/anvil_recipe/weapons/iron/maul
+	name = "Maul (+1 Iron)"
+	req_bar = /obj/item/ingot/iron
+	additional_items = list(/obj/item/ingot/iron)
+	created_item = /obj/item/rogueweapon/mace/maul
+	craftdiff = 4
 
 /// STEEL WEAPONS
 /datum/anvil_recipe/weapons/steel/dagger
@@ -659,6 +721,11 @@
 	req_blade = /obj/item/blade/steel_sword
 	created_item = /obj/item/rogueweapon/sword/falx
 
+/datum/anvil_recipe/weapons/steel/maul
+	name = "Grand Maul (+2 Steel)"
+	req_bar = /obj/item/ingot/steel
+	additional_items = list(/obj/item/ingot/steel, /obj/item/ingot/steel)
+	created_item = /obj/item/rogueweapon/mace/maul/grand
 
 // GOLD
 
@@ -701,7 +768,7 @@
 	created_item = /obj/item/rogueweapon/huntingknife/idagger/silver/elvish
 
 /datum/anvil_recipe/weapons/silver/dagger
-	name = "Dagger, Silver (+1 Silver"
+	name = "Dagger, Silver (+1 Silver)"
 	req_bar = /obj/item/ingot/silver
 	additional_items = list(/obj/item/ingot/silver)
 	created_item = /obj/item/rogueweapon/huntingknife/idagger/silver
@@ -735,6 +802,12 @@
 	req_bar = /obj/item/ingot/silver
 	additional_items = list(/obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/grown/log/tree/small)
 	created_item = /obj/item/rogueweapon/sword/long/kriegmesser/silver
+
+/datum/anvil_recipe/weapons/silver/greatsword
+	name = "Greatsword, Silver (+4 Silver, +1 Small Log)"
+	req_bar = /obj/item/ingot/silver
+	additional_items = list(/obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/grown/log/tree/small)
+	created_item = /obj/item/rogueweapon/greatsword/silver
 
 /datum/anvil_recipe/weapons/silver/waraxe
 	name = "War Axe, Silver (+2 Silver, +1 Small Log)"
@@ -797,36 +870,6 @@
 	additional_items = list(/obj/item/ingot/silver, /obj/item/grown/log/tree/small)
 	created_item = /obj/item/ammo_casing/caseless/rogue/javelin/silver
 	createditem_num = 2
-
-// BRONZE
-
-/datum/anvil_recipe/weapons/bronze/katar
-	name = "Katar, Bronze"
-	req_bar = /obj/item/ingot/bronze
-	created_item = /obj/item/rogueweapon/katar/bronze
-
-/datum/anvil_recipe/weapons/bronze/gladius
-	name = "Gladius, Bronze"
-	req_bar = /obj/item/ingot/bronze
-	created_item = /obj/item/rogueweapon/sword/short/gladius
-
-/datum/anvil_recipe/weapons/bronze/spear
-	name = "Spear, Bronze (+1 Bronze, +1 Small Log)"
-	req_bar = /obj/item/ingot/bronze
-	additional_items = list(/obj/item/ingot/bronze, /obj/item/grown/log/tree/small)
-	created_item = /obj/item/rogueweapon/spear/bronze
-
-/datum/anvil_recipe/weapons/bronze/trident
-	name = "Trident, Bronze (+1 Steel, +1 Iron, +1 Small Log)"
-	req_bar = /obj/item/ingot/bronze
-	req_blade = /obj/item/blade/steel_polearm
-	additional_items = list(/obj/item/ingot/steel, /obj/item/ingot/iron, /obj/item/grown/log/tree/small)
-	created_item = /obj/item/rogueweapon/spear/trident
-
-/datum/anvil_recipe/weapons/bronze/bronzeknuckle
-	name = "Knuckledusters, Bronze"
-	req_bar = /obj/item/ingot/bronze
-	created_item = /obj/item/rogueweapon/knuckles/bronzeknuckles
 
 
 // SHIELDS
@@ -951,6 +994,13 @@
 	createditem_num = 10
 	i_type = "Ammo"
 
+/datum/anvil_recipe/weapons/bronze/slingbullets
+	name = "Sling Bullets, Bronze (x10)"
+	req_bar = /obj/item/ingot/bronze
+	created_item = /obj/item/ammo_casing/caseless/rogue/sling_bullet/bronze
+	createditem_num = 10
+	i_type = "Ammo"
+
 /datum/anvil_recipe/weapons/aalloy/slingbullets
 	name = "Sling Bullets, Decrepit (x10)"
 	req_bar = /obj/item/ingot/aalloy
@@ -978,12 +1028,26 @@
 
 // BLACKSTEEL
 
+
+/datum/anvil_recipe/weapons/blacksteel/arming
+	name = "Blacksteel Arming Sword"
+	req_bar = /obj/item/ingot/blacksteel
+	created_item = /obj/item/rogueweapon/sword/blacksteel
+
 /datum/anvil_recipe/weapons/blacksteel/flamberge
 	name = "Blacksteel Flamberge (+1 Blacksteel, +1 Rontz)"
 	req_bar = /obj/item/ingot/blacksteel
 	additional_items = list(/obj/item/ingot/blacksteel, /obj/item/roguegem/ruby)
 	created_item = /obj/item/rogueweapon/greatsword/grenz/flamberge/blacksteel
 
+/datum/anvil_recipe/weapons/blacksteel/decsword
+	name = "Blacksteel Sword, Decorated (+1 Steel Sword)"
+	req_bar = /obj/item/ingot/blacksteel
+	additional_items = list(/obj/item/rogueweapon/sword)
+	created_item = /obj/item/rogueweapon/sword/decorated/blacksteel
+	craftdiff = 5
+
+//Church Weapons forged from Holy Steel
 
 // HOLY STEEL
 

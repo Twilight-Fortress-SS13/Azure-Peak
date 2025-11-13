@@ -1661,7 +1661,6 @@ generate/load female uniform sprites matching all previously decided variables
 				pic.color = get_altdetail_color()
 			standing.overlays.Add(pic)
 
-
 	if(!isinhands && HAS_BLOOD_DNA(src))
 		var/index = "[t_state][sleeveindex]"
 		var/static/list/bloody_onmob = list()
@@ -1930,7 +1929,7 @@ generate/load female uniform sprites matching all previously decided variables
 	if (!istype(HD))
 		return
 
-	testing("ehadonly [src]")
+
 	HD.update_limb()
 
 	add_overlay(HD.get_limb_icon())

@@ -22,6 +22,8 @@
 	max_integrity = 100
 	sewrepair = TRUE
 	block2add = FOV_BEHIND
+	salvage_result = /obj/item/natural/cloth
+	salvage_amount = 1
 
 /obj/item/clothing/head/roguetown/roguehood/ComponentInitialize()
 	. = ..()
@@ -68,7 +70,7 @@
 	alternate_worn_layer  = 8.9 //On top of helmet
 	body_parts_covered = HEAD|HAIR|EARS|NECK
 	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
-	armor = ARMOR_HEAD_CLOTHING
+	armor = ARMOR_CLOTHING
 	dynamic_hair_suffix = ""
 	edelay_type = 1
 	adjustable = CAN_CADJUST
@@ -79,6 +81,8 @@
 	sewrepair = TRUE
 	mask_override = TRUE
 	overarmor = FALSE
+	salvage_result = /obj/item/natural/cloth
+	salvage_amount = 1
 
 /obj/item/clothing/head/roguetown/roguehood/shalal/black
 	color = CLOTHING_BLACK
@@ -100,7 +104,7 @@
 	desc = "A common sight amongst those travelling the long desert routes, it offers protection from the heat and a modicum of it against the beasts that prowl its more comfortable nites."
 	max_integrity = 100
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
-	armor = ARMOR_HEAD_PSYDON //basically the same as a warscholar hood
+	armor = ARMOR_SPELLSINGER //basically the same as a warscholar hood
 	item_state = "hijab"
 	icon_state = "deserthood"
 	naledicolor = TRUE
@@ -135,6 +139,8 @@
 	toggle_icon_state = TRUE
 	max_integrity = 100
 	resistance_flags = FIRE_PROOF
+	salvage_result = /obj/item/natural/cloth
+	salvage_amount = 1
 
 /obj/item/clothing/head/roguetown/roguehood/abyssor
 	name = "depths hood"
@@ -150,6 +156,8 @@
 	adjustable = CAN_CADJUST
 	toggle_icon_state = TRUE
 	max_integrity = 100
+	salvage_result = /obj/item/natural/cloth
+	salvage_amount = 1
 
 /obj/item/clothing/head/roguetown/roguehood/ravoxgorget
 	name = "ravox's tabard gorget"
@@ -161,6 +169,8 @@
 	flags_inv = HIDENECK
 	dynamic_hair_suffix = ""
 	sewrepair = TRUE
+	salvage_result = /obj/item/natural/cloth
+	salvage_amount = 1
 
 //............... Feldshers Hood ............... //
 /obj/item/clothing/head/roguetown/roguehood/feld
@@ -170,6 +180,8 @@
 	item_state = "feldhood"
 	body_parts_covered = HEAD|EARS|NOSE
 	color = null
+	salvage_result = /obj/item/natural/cloth
+	salvage_amount = 1
 
 //............... Physicians Hood ............... //
 /obj/item/clothing/head/roguetown/roguehood/phys
@@ -179,6 +191,8 @@
 	item_state = "surghood"
 	body_parts_covered = HEAD|EARS|NOSE
 	color = null
+	salvage_result = /obj/item/natural/cloth
+	salvage_amount = 1
 
 //Agnostic variants for use in the loadout.
 
@@ -189,6 +203,8 @@
 	item_state = "feldhood"
 	body_parts_covered = HEAD|EARS|NOSE
 	color = null
+	salvage_result = /obj/item/natural/cloth
+	salvage_amount = 1
 
 /obj/item/clothing/head/roguetown/roguehood/shroudblack
 	name = "black shroud"
@@ -197,6 +213,8 @@
 	item_state = "surghood"
 	body_parts_covered = HEAD|EARS|NOSE
 	color = null
+	salvage_result = /obj/item/natural/cloth
+	salvage_amount = 1
 
 //
 
@@ -213,12 +231,14 @@
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
-	armor = ARMOR_HEAD_PSYDON
+	armor = ARMOR_SPELLSINGER
 	dynamic_hair_suffix = ""
 	edelay_type = 1
 	adjustable = CAN_CADJUST
 	toggle_icon_state = TRUE
 	max_integrity = 200
+	salvage_result = /obj/item/natural/cloth
+	salvage_amount = 1
 
 /obj/item/clothing/head/roguetown/roguehood/psydon/confessor
 	name = "confessional hood"
@@ -230,29 +250,35 @@
 	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
-	armor = ARMOR_HEAD_PSYDON
+	armor = ARMOR_SPELLSINGER
 	dynamic_hair_suffix = ""
 	edelay_type = 1
 	adjustable = CAN_CADJUST
 	toggle_icon_state = TRUE
 	max_integrity = 200
+	salvage_result = /obj/item/natural/cloth
+	salvage_amount = 1
 
 /obj/item/clothing/head/roguetown/roguehood/hierophant
 	name = "hierophant's pashmina"
 	desc = "A thick hood that covers one's entire head, should they desire, or merely acts as a scarf otherwise. Made with spell-laced fabric to provide some protection against daemons and mortals alike."
 	max_integrity = 100
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
-	armor = ARMOR_HEAD_PSYDON
+	armor = ARMOR_SPELLSINGER
 	icon_state = "deserthood"
 	item_state = "deserthood"
 	naledicolor = TRUE
+	salvage_result = /obj/item/natural/cloth
+	salvage_amount = 1
 
 /obj/item/clothing/head/roguetown/roguehood/pontifex
 	name = "pontifex's pashmina"
 	desc = "A slim hood with thin, yet dense fabric. Stretchy and malleable, allowing for full flexibility and mobility. Made with spell-laced fabric to provide some protection against daemons and mortals alike."
 	max_integrity = 100
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
-	armor = ARMOR_HEAD_PSYDON
+	armor = ARMOR_SPELLSINGER
 	icon_state = "monkhood"
 	item_state = "monkhood"
 	naledicolor = TRUE
+	salvage_result = /obj/item/natural/cloth
+	salvage_amount = 1
