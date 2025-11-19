@@ -208,10 +208,9 @@
 /obj/item/rogueweapon/sword/bronze
 	name = "bronze arming sword"
 	desc = "A long bronze blade attached to a hilt, separated by a crossguard. The arming sword has been Psydonia's implement of war by excellence for generations - and this implement is the grandfather of them all. Though it lacks the gladii's girth, this arming sword still feels well-balanced for one-handed use."
-	icon_state = "sword3"
+	icon_state = "bronzesword"
 	force = 23 //Iron- and steel arming swords have the same force. +2 to mimic the one-handed nature of bronze swords.
 	force_wielded = 25
-	color = "#f9d690"
 	minstr = 5
 	smeltresult = /obj/item/ingot/bronze
 	max_blade_int = 250
@@ -1311,9 +1310,7 @@
 
 /obj/item/rogueweapon/sword/rapier/dec
 	name = "decorated rapier"
-	desc = "A fine duelist's instrument with a tapered thrusting blade. Its hilt is gilt in gold and inlaid, \
-	and its blade bears twin inscriptions on either side. One reads, \"CAST IN THE NAME OF GODS\" while the \
-	obverse reads, \"YE NOT GUILTY\"."
+	desc = "A strange, cheap ring devoid of purpose, yet carrying an uncanny sense of nostalgia of grand upsets, felled short.\n<i>'You shall know his name. You shall know his purpose. You shall die.'</i>"
 	icon_state = "decrapier"
 	sheathe_icon = "decrapier"
 	sellprice = 140

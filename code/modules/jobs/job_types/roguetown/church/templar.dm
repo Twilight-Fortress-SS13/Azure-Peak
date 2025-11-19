@@ -129,8 +129,8 @@
 
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T2, passive_gain = CLERIC_REGEN_MINOR, devotion_limit = CLERIC_REQ_2)	//Capped to T2 miracles.
-
-	SStreasury.give_money_account(ECONOMIC_LOWER_MIDDLE_CLASS, H, "Church Funding.")
+	if(H.mind)
+		SStreasury.give_money_account(ECONOMIC_LOWER_MIDDLE_CLASS, H, "Church Funding.")
 
 /datum/outfit/job/roguetown/templar/monk/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
@@ -332,7 +332,8 @@
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T2, passive_gain = CLERIC_REGEN_MINOR, devotion_limit = CLERIC_REQ_2)	//Capped to T2 miracles.
-	SStreasury.give_money_account(ECONOMIC_LOWER_MIDDLE_CLASS, H, "Church Funding.")
+	if(H.mind)
+		SStreasury.give_money_account(ECONOMIC_LOWER_MIDDLE_CLASS, H, "Church Funding.")
 
 /datum/outfit/job/roguetown/templar/crusader/choose_loadout(mob/living/carbon/human/H)
 	. = ..()

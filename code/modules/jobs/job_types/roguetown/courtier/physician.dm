@@ -95,4 +95,5 @@
 		H.change_stat(STATKEY_SPD, -1)
 		H.change_stat(STATKEY_INT, 1)
 		H.change_stat(STATKEY_PER, 1)
-	SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.")
+	if(H.mind)
+		SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.")

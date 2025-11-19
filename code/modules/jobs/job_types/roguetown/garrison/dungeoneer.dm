@@ -98,4 +98,5 @@
 		else
 			cloak = /obj/item/clothing/cloak/stabard/dungeon
 			head = /obj/item/clothing/head/roguetown/menacing
-	SStreasury.give_money_account(ECONOMIC_LOWER_MIDDLE_CLASS, H, "Savings.")
+	if(H.mind)
+		SStreasury.give_money_account(ECONOMIC_LOWER_MIDDLE_CLASS, H, "Savings.")

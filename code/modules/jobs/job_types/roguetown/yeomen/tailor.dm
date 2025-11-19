@@ -56,10 +56,10 @@
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
 	backr = /obj/item/storage/backpack/rogue/satchel
 	backpack_contents = list(
-		/obj/item/needle, 
+		/obj/item/needle,
 		/obj/item/storage/keyring/tailor,
-		/obj/item/dye_brush, 
-		/obj/item/recipe_book/sewing, 
+		/obj/item/dye_brush,
+		/obj/item/recipe_book/sewing,
 		/obj/item/recipe_book/leatherworking
 		)
 	if(should_wear_femme_clothes(H))
@@ -69,4 +69,5 @@
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/fittedclothing)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/takeapprentice)
-	SStreasury.give_money_account(ECONOMIC_UPPER_MIDDLE_CLASS, H, "Savings.")
+	if(H.mind)
+		SStreasury.give_money_account(ECONOMIC_UPPER_MIDDLE_CLASS, H, "Savings.")

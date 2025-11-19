@@ -139,7 +139,8 @@
 		)
 		var/armorchoice = input(H, "Choose your armor.", "TAKE UP ARMOR") as anything in armors
 		armor = armors[armorchoice]
-	SStreasury.give_money_account(ECONOMIC_UPPER_MIDDLE_CLASS, H, "Savings.")
+	if(H.mind)
+		SStreasury.give_money_account(ECONOMIC_UPPER_MIDDLE_CLASS, H, "Savings.")
 
 /obj/effect/proc_holder/spell/invoked/order
 	name = ""

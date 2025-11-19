@@ -120,11 +120,12 @@
 		/mob/proc/haltyell,
 		/mob/living/carbon/human/mind/proc/setorders
 	)
+	if(H.mind)
+		SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.")
 	H.adjust_blindness(-3)
 	if(H.mind)
 		var/weapons = list(
 			"Edict & Aegis (Sabre & Buckler)",
-			"Deliverance (Glaive)",
 			"Claymore",
 			"Great Mace",
 			"Battle Axe",
@@ -239,7 +240,6 @@
 		var/helmchoice = input(H, "Choose your Helm.", "TAKE UP HELMS") as anything in helmets
 		if(helmchoice != "None")
 			head = helmets[helmchoice]
-	SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.")
 
 /obj/effect/proc_holder/spell/self/convertrole
 	name = "Recruit Beggar"
