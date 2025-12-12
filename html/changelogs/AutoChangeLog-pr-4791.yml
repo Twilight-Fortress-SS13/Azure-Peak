@@ -1,0 +1,4 @@
+author: "Matheo351"
+delete-after: True
+changes:
+  - balance: "Straw beds are now considered beds when it comes to falling asleep time"
