@@ -280,7 +280,7 @@
 		)
 	H.cmode_music = 'sound/music/cmode/antag/combat_cutpurse.ogg'
 	if(H.mind)
-		H.mind.current.faction += "[H.name]_faction"
+		H.mind?.current.faction += "[H.name]_faction"
 		var/weapons = list("Rapier","Dagger", "Bow", "Crossbow", "Slurbow")
 		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		H.set_blindness(0)
