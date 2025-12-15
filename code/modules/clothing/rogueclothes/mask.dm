@@ -307,7 +307,6 @@
 	max_integrity = 100
 	resistance_flags = FIRE_PROOF
 	armor = ARMOR_PLATE
-	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT)
 	flags_inv = HIDEFACE|HIDESNOUT
 	body_parts_covered = FACE
 	block2add = FOV_BEHIND
@@ -324,7 +323,6 @@
 	drop_sound = 'sound/foley/dropsound/armor_drop.ogg'
 	resistance_flags = FIRE_PROOF
 	armor = ARMOR_PLATE
-	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT)
 	flags_inv = HIDEFACE|HIDESNOUT
 	body_parts_covered = FACE
 	block2add = FOV_BEHIND
@@ -344,8 +342,10 @@
 	icon_state = "ancientmask"
 	max_integrity = 75
 	color = "#bb9696"
+	chunkcolor = "#532e25"
 	smeltresult = /obj/item/ingot/aaslag
 	anvilrepair = null
+	prevent_crits = PREVENT_CRITS_NONE
 
 /obj/item/clothing/mask/rogue/facemask/copper
 	name = "copper mask"
@@ -553,7 +553,6 @@
 	max_integrity = 100
 	armor = ARMOR_PLATE
 	flags_inv = HIDEFACE|HIDESNOUT
-	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT)
 	sellprice = 0
 
 /obj/item/clothing/mask/rogue/lordmask/naledi/equipped(mob/user, slot)
@@ -581,7 +580,6 @@
 	max_integrity = 150
 	armor = ARMOR_PLATE
 	flags_inv = HIDEFACE|HIDESNOUT
-	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT)
 	sellprice = 0
 
 /obj/item/clothing/mask/rogue/exoticsilkmask
