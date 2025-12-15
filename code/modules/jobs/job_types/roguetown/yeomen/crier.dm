@@ -88,7 +88,8 @@
 	if(H.age == AGE_OLD)
 		H.change_stat(STATKEY_SPD, -1)
 		H.change_stat(STATKEY_INT, 1)
-	SStreasury.give_money_account(ECONOMIC_UPPER_CLASS, H, "Savings.")
+	if(H.mind)
+		SStreasury.give_money_account(ECONOMIC_UPPER_CLASS, H, "Savings.")
 
 /mob/living/carbon/human/proc/crier_announcement()
 	set name = "Announcement"
@@ -114,3 +115,5 @@
 		else
 			to_chat(src, span_warning("Your announcement was interrupted!"))
 			return FALSE
+
+#undef CRIER_ANNOUNCEMENT_COOLDOWN

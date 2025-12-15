@@ -59,7 +59,7 @@
 		if(M != user)
 			M.visible_message(span_danger("[user] attempts to feed [M] something."), \
 						span_danger("[user] attempts to feed you something."))
-			if(!do_mob(user, M, double_progress = TRUE))
+			if(!do_mob(user, M, double_progress = TRUE, can_move = FALSE))
 				return
 			if(!reagents || !reagents.total_volume)
 				return // The drink might be empty after the delay, such as by spam-feeding
@@ -93,6 +93,7 @@
 
 
 	if(!spillable)
+		to_chat(user, span_warning("[src] is closed!"))
 		return
 
 

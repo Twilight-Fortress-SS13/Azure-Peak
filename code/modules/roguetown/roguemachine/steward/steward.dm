@@ -9,7 +9,7 @@
 
 /obj/structure/roguemachine/steward
 	name = "nerve master"
-	desc = "The stewards most trusted friend."
+	desc = "A magitech device connected to the royal treasury. Stewards can manage payroll by interacting with it."
 	icon = 'icons/roguetown/misc/machines.dmi'
 	icon_state = "steward_machine"
 	density = TRUE
@@ -24,7 +24,7 @@
 	var/total_deposit = 0
 	var/list/excluded_jobs = list("Wretch","Vagabond","Adventurer")
 	var/current_category = "Raw Materials"
-	var/list/categories = list("Raw Materials", "Foodstuffs", "Fruits")
+	var/list/categories = list("Raw Materials", "Fruit", "Vegetable", "Animal")
 	var/list/daily_payments = list() // Associative list: job name -> payment amount
 
 /obj/structure/roguemachine/steward/Initialize()

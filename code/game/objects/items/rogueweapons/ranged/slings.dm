@@ -5,12 +5,15 @@
 	chargedrain = 2
 	charging_slowdown = 3
 
-/datum/intent/swing/sling/can_charge() //checks for arms and spare empty hand removed since it can fire with one hand
+/datum/intent/swing/sling/can_charge(atom/clicked_object) //checks for arms and spare empty hand removed since it can fire with one hand
+	if(mastermob)
+		if(istype(clicked_object, /obj/item/quiver) && istype(mastermob.get_active_held_item(), /obj/item/gun/ballistic))
+			return FALSE
 	return TRUE
 
 /datum/intent/swing/sling/prewarning()
 	if(mastermob)
-		mastermob.visible_message(span_warning("[mastermob] swings the [masteritem]!"))
+		mastermob.visible_message(span_warning("[mastermob] swings [masteritem]!"))
 		playsound(mastermob, pick('sound/combat/Ranged/sling-draw-01.ogg'), 100, FALSE)
 
 /datum/intent/swing/sling/get_chargetime() //determines swing length. damage is in /obj/item/gun/ballistic/revolver/grenadelauncher/sling/process_fire
@@ -32,12 +35,15 @@
 	chargedrain = 2
 	charging_slowdown = 3
 
-/datum/intent/arc/sling/can_charge() //checks for arms and spare empty hand removed since it can fire with one hand
+/datum/intent/arc/sling/can_charge(atom/clicked_object) //checks for arms and spare empty hand removed since it can fire with one hand
+	if(mastermob)
+		if(istype(clicked_object, /obj/item/quiver) && istype(mastermob.get_active_held_item(), /obj/item/gun/ballistic))
+			return FALSE
 	return TRUE
 
 /datum/intent/arc/sling/prewarning()
 	if(mastermob)
-		mastermob.visible_message(span_warning("[mastermob] swings the [masteritem] in an arc!"))
+		mastermob.visible_message(span_warning("[mastermob] swings [masteritem] in an arc!"))
 		playsound(mastermob, pick('sound/combat/Ranged/sling-draw-01.ogg'), 100, FALSE)
 
 /datum/intent/arc/sling/get_chargetime() //same calculations as swing but with a greater base for throwing through teammates
@@ -185,9 +191,6 @@
 		if (temp_stone != null) //reseting after stone ammo use
 			bonus_stone_force = 0 //stone is thrown, so the bonus is lost
 			temp_stone = null //stone is gone, forever.
-	if(user.has_status_effect(/datum/status_effect/buff/clash) && ishuman(user))
-		var/mob/living/carbon/human/H = user
-		H.bad_guard(span_warning("I can't focus on my Guard and sling rocks! This drains me!"), cheesy = TRUE)
 	. = ..()
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/sling/update_icon()

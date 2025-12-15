@@ -74,7 +74,7 @@
 	var/show_xp = TRUE
 	if(!(L.client?.prefs.floating_text_toggles & XP_TEXT))
 		show_xp = FALSE
-	if((L.get_skill_level(skill) < SKILL_LEVEL_APPRENTICE) && !is_considered_sleeping())
+	if((L.get_skill_level(skill) < SKILL_LEVEL_APPRENTICE) && (!is_considered_sleeping()|| HAS_TRAIT(mind.current, TRAIT_VAMP_DREAMS)))
 		var/org_lvl = L.get_skill_level(skill)
 		L.adjust_experience(skill, amt)
 		var/new_lvl = L.get_skill_level(skill)
@@ -93,7 +93,7 @@
 			trait_capped_level = skillref.trait_uncap[trait]
 	#endif
 	#ifndef USES_TRAIT_SKILL_GATING
-		trait_capped_level = SKILL_LEVEL_LEGENDARY
+	trait_capped_level = SKILL_LEVEL_LEGENDARY
 	#endif
 
 	// Using this prevent a bug where you can bank xp to go one beyond cap
@@ -222,8 +222,7 @@
 /datum/sleep_adv/proc/is_considered_sleeping()
 	if(!mind.current)
 		return FALSE
-	var/has_vamp_trait = HAS_TRAIT(mind.current, TRAIT_VAMP_DREAMS)
-	if(has_vamp_trait)
+	if(HAS_TRAIT(mind?.current, TRAIT_VAMP_DREAMS))
 		return TRUE
 	if(mind.current.IsSleeping())
 		return TRUE
@@ -261,11 +260,11 @@
 	var/dream_text = skill.get_random_dream()
 	if(dream_text)
 		to_chat(mind.current, span_notice(dream_text))
-	
+
 	// Notify player if they're benefiting from Malum's blessing for craft skills or sewing
 	if(HAS_TRAIT(mind.current, TRAIT_FORGEBLESSED) && (istype(skill, /datum/skill/craft) || istype(skill, /datum/skill/craft/sewing)))
 		to_chat(mind.current, span_notice("Malum's blessing reduces the dream point cost of your crafting training."))
-	
+
 	sleep_adv_points -= get_skill_cost(skill_type)
 	adjust_sleep_xp(skill_type, -get_requried_sleep_xp_for_skill(skill_type, 1))
 	mind.current.adjust_skillrank(skill_type, 1, FALSE)
@@ -329,6 +328,12 @@
 		mind.RemoveSpell(mind.rituos_spell)
 		mind.rituos_spell = null
 	to_chat(mind.current, span_notice("...and that's all I dreamt of."))
+	if(HAS_TRAIT(mind.current, TRAIT_STUDENT))
+		REMOVE_TRAIT(mind.current, TRAIT_STUDENT, TRAIT_GENERIC)
+		to_chat(mind.current, span_smallnotice("I feel that I can be educated in a skill once more."))
+	if(HAS_TRAIT(mind.current, TRAIT_EXPLOSIVE_SUPPLY))
+		mind.has_bomb = TRUE
+		to_chat(mind.current, span_smallnotice("I need to check on HERMES. I think a new package has arrived."))
 	close_ui()
 
 /datum/sleep_adv/Topic(href, list/href_list)

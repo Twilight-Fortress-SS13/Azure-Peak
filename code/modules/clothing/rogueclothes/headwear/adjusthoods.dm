@@ -103,7 +103,6 @@
 	name = "padded headscarf"
 	desc = "A common sight amongst those travelling the long desert routes, it offers protection from the heat and a modicum of it against the beasts that prowl its more comfortable nites."
 	max_integrity = 100
-	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
 	armor = ARMOR_SPELLSINGER //basically the same as a warscholar hood
 	item_state = "hijab"
 	icon_state = "deserthood"
@@ -137,8 +136,25 @@
 	edelay_type = 1
 	adjustable = CAN_CADJUST
 	toggle_icon_state = TRUE
-	max_integrity = 100
+	max_integrity = 180
 	resistance_flags = FIRE_PROOF
+	salvage_result = /obj/item/natural/cloth
+	salvage_amount = 1
+
+/obj/item/clothing/head/roguetown/roguehood/nochood
+	name = "moon hood"
+	desc = "A hood worn by those who favor Noc with a mask in the shape of a crescent."
+	color = null
+	icon_state = "nochood"
+	item_state = "nochood"
+	icon = 'icons/roguetown/clothing/head.dmi'
+	body_parts_covered = NECK
+	dynamic_hair_suffix = ""
+	sewrepair = TRUE
+	edelay_type = 1
+	adjustable = CAN_CADJUST
+	toggle_icon_state = TRUE
+	max_integrity = 180
 	salvage_result = /obj/item/natural/cloth
 	salvage_amount = 1
 
@@ -155,7 +171,27 @@
 	edelay_type = 1
 	adjustable = CAN_CADJUST
 	toggle_icon_state = TRUE
-	max_integrity = 100
+	max_integrity = 180
+	salvage_result = /obj/item/natural/cloth
+	salvage_amount = 1
+
+/obj/item/clothing/head/roguetown/roguehood/eorahood
+	name = "opera hood"
+	desc = "An opera mask worn by the faithful of Eora, usually during their rituals. Comes with a hood that can be pulled up for warmth."
+	color = null
+	icon = 'icons/roguetown/clothing/head.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/64x64/head.dmi'
+	icon_state = "eorahood"
+	bloody_icon = 'icons/effects/blood64.dmi'
+	bloody_icon_state = "helmetblood"
+	worn_x_dimension = 64
+	worn_y_dimension = 64
+	resistance_flags = FIRE_PROOF
+	dynamic_hair_suffix = ""
+	edelay_type = 1
+	adjustable = CAN_CADJUST
+	toggle_icon_state = TRUE
+	max_integrity = 180
 	salvage_result = /obj/item/natural/cloth
 	salvage_amount = 1
 
@@ -230,7 +266,7 @@
 	body_parts_covered = NECK | HEAD | HAIR
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
-	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
+	prevent_crits = PREVENT_CRITS_NONE
 	armor = ARMOR_SPELLSINGER
 	dynamic_hair_suffix = ""
 	edelay_type = 1
@@ -249,7 +285,7 @@
 	body_parts_covered = NECK | HEAD | HAIR
 	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
-	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
+	prevent_crits = PREVENT_CRITS_NONE
 	armor = ARMOR_SPELLSINGER
 	dynamic_hair_suffix = ""
 	edelay_type = 1
@@ -263,7 +299,7 @@
 	name = "hierophant's pashmina"
 	desc = "A thick hood that covers one's entire head, should they desire, or merely acts as a scarf otherwise. Made with spell-laced fabric to provide some protection against daemons and mortals alike."
 	max_integrity = 100
-	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
+	prevent_crits = PREVENT_CRITS_NONE
 	armor = ARMOR_SPELLSINGER
 	icon_state = "deserthood"
 	item_state = "deserthood"
@@ -275,7 +311,7 @@
 	name = "pontifex's pashmina"
 	desc = "A slim hood with thin, yet dense fabric. Stretchy and malleable, allowing for full flexibility and mobility. Made with spell-laced fabric to provide some protection against daemons and mortals alike."
 	max_integrity = 100
-	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
+	prevent_crits = PREVENT_CRITS_NONE
 	armor = ARMOR_SPELLSINGER
 	icon_state = "monkhood"
 	item_state = "monkhood"

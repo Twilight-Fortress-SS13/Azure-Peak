@@ -19,6 +19,7 @@
 	minstr = 6
 	grid_width = 32
 	grid_height = 64
+	special = /datum/special_intent/whip_coil
 
 /obj/item/rogueweapon/whip/getonmobprop(tag)
 	. = ..()
@@ -122,7 +123,7 @@
 	is_silver = TRUE
 	force = 25
 	possible_item_intents = list(/datum/intent/whip/lash/holy, /datum/intent/whip/crack, /datum/intent/whip/punish)
-	minstr = 12
+	minstr = 11
 	wdefense = 0
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/silver
@@ -166,7 +167,7 @@
 	icon_state = "psywhip_lesser"
 	possible_item_intents = list(/datum/intent/whip/lash/holy, /datum/intent/whip/crack, /datum/intent/whip/punish)
 	force = 23
-	minstr = 12
+	minstr = 11
 	wdefense = 0
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silverblessed

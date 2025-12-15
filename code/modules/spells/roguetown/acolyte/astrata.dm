@@ -92,10 +92,15 @@
 	var/revive_pq = PQ_GAIN_REVIVE
 
 /obj/effect/proc_holder/spell/invoked/revive/start_recharge()
+	var/old_recharge = recharge_time
 	// Because the cooldown for anastasis is so incredibly low, not having tech impacts them more heavily than other faiths
 	var/tech_resurrection_modifier = SSchimeric_tech.get_resurrection_multiplier()
 	if(tech_resurrection_modifier > 1)
-		recharge_time = initial(recharge_time) * (tech_resurrection_modifier * 2.5)
+		recharge_time = initial(recharge_time) * (tech_resurrection_modifier * 1.25)
+	else
+		recharge_time = initial(recharge_time)
+	if(charge_counter >= old_recharge && old_recharge > 0)
+		charge_counter = recharge_time
 	. = ..()
 
 /obj/effect/proc_holder/spell/invoked/revive/cast(list/targets, mob/living/user)
@@ -174,7 +179,7 @@
 	antimagic_allowed = FALSE
 	invocations = list("Astrata show me true.")
 	invocation_type = "shout"
-	recharge_time = 120 SECONDS
+	recharge_time = 90 SECONDS
 	devotion_cost = 30
 	miracle = TRUE
 
@@ -196,12 +201,7 @@
 	alert_type = /atom/movable/screen/alert/status_effect/buff/astrata_gaze
 	duration = 20 SECONDS
 
-/datum/status_effect/buff/astrata_gaze/on_apply(assocskill)
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.viewcone_override = TRUE
-		H.hide_cone()
-		H.update_cone_show()
+/datum/status_effect/buff/astrata_gaze/on_creation(mob/living/new_owner, assocskill)
 	var/per_bonus = 0
 	if(assocskill)
 		if(assocskill > SKILL_LEVEL_NOVICE)
@@ -212,6 +212,14 @@
 		duration *= 2
 	if(per_bonus > 0)
 		effectedstats = list(STATKEY_PER = per_bonus)
+	. = ..()
+
+/datum/status_effect/buff/astrata_gaze/on_apply(assocskill)
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.viewcone_override = TRUE
+		H.hide_cone()
+		H.update_cone_show()
 	to_chat(owner, span_info("She shines through me! I can perceive all clear as dae!"))
 	. = ..()
 

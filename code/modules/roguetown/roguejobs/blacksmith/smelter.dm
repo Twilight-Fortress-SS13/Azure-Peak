@@ -85,6 +85,16 @@
 		to_chat(user, span_warning("\The [attacking_item] should be used at an anvil, not \the [src]!"))
 		return
 
+	if(istype(attacking_item, /obj/item/reagent_containers))
+		var/obj/item/reagent_containers/container = attacking_item
+		var/found_splash = FALSE
+		if(INTENT_SPLASH in container.possible_item_intents)
+			found_splash = TRUE
+		if(found_splash)
+			. = ..()
+			if(!.)
+				return
+
 	if(attacking_item.firefuel)
 		. = ..()
 		if(!.) //False/null if using the item as fuel. If true, we want to try smelt it so go onto next segment.
@@ -134,6 +144,8 @@
 	user.dropItemToGround(smelting_item)
 	smelting_item.forceMove(src)
 	contained_items += smelting_item
+	if(smelting_item.smelted)
+		smelting_item.smelted = FALSE
 	if(!isliving(user) || !user.mind)
 		contained_items[smelting_item] = SMELTERY_LEVEL_SPOIL
 	else

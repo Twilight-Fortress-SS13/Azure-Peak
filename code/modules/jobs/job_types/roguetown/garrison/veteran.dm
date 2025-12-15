@@ -92,6 +92,7 @@
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
 	pants = /obj/item/clothing/under/roguetown/chainlegs
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor
+	saiga_shoes = /obj/item/clothing/shoes/roguetown/horseshoes/steel
 	beltr = /obj/item/storage/keyring/guardcastle
 	backr = /obj/item/storage/backpack/rogue/satchel/black
 	cloak = /obj/item/clothing/cloak/half/vet
@@ -101,7 +102,8 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
 	H.verbs |= /mob/proc/haltyell
-	SStreasury.give_money_account(ECONOMIC_RICH, H, "Retirement.")
+	if(H.mind)
+		SStreasury.give_money_account(ECONOMIC_RICH, H, "Retirement.")
 
 /datum/outfit/job/roguetown/vet/battlemaster/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
@@ -168,6 +170,7 @@
 	gloves = /obj/item/clothing/gloves/roguetown/plate
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor
+	saiga_shoes = /obj/item/clothing/shoes/roguetown/horseshoes/steel
 	l_hand = /obj/item/rogueweapon/sword
 	beltl = /obj/item/rogueweapon/scabbard/sword
 	beltr = /obj/item/storage/keyring/guardcastle
@@ -189,7 +192,8 @@
 		H.adjust_skillrank_up_to(/datum/skill/combat/axes, 5, TRUE)
 		H.adjust_skillrank_up_to(/datum/skill/combat/wrestling, 5, TRUE)
 	H.verbs |= /mob/proc/haltyell
-	SStreasury.give_money_account(ECONOMIC_RICH, H, "Retirement.")
+	if(H.mind)
+		SStreasury.give_money_account(ECONOMIC_RICH, H, "Retirement.")
 
 /datum/advclass/veteran/calvaryman
 	name = "Tarnished Knight"
@@ -237,6 +241,7 @@
 	gloves = /obj/item/clothing/gloves/roguetown/plate
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor
+	saiga_shoes = /obj/item/clothing/shoes/roguetown/horseshoes/steel
 	backr = /obj/item/storage/backpack/rogue/satchel/black
 	belt = /obj/item/storage/belt/rogue/leather/black
 	cloak = /obj/item/clothing/cloak/half/vet
@@ -254,7 +259,8 @@
 		H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 5, TRUE)
 		H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, 5, TRUE)
 	H.verbs |= /mob/proc/haltyell
-	SStreasury.give_money_account(ECONOMIC_RICH, H, "Retirement.")
+	if(H.mind)
+		SStreasury.give_money_account(ECONOMIC_RICH, H, "Retirement.")
 
 	H.adjust_blindness(-3)
 	if(H.mind)
@@ -325,6 +331,7 @@
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/grenzelpants
 	shoes = /obj/item/clothing/shoes/roguetown/grenzelhoft
+	saiga_shoes = /obj/item/clothing/shoes/roguetown/horseshoes/steel
 	gloves = /obj/item/clothing/gloves/roguetown/angle/grenzelgloves
 	beltl = /obj/item/rogueweapon/sword/short
 	beltr = /obj/item/storage/keyring/guardcastle
@@ -336,7 +343,8 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
 	H.verbs |= /mob/proc/haltyell
-	SStreasury.give_money_account(ECONOMIC_RICH, H, "Retirement.")
+	if(H.mind)
+		SStreasury.give_money_account(ECONOMIC_RICH, H, "Retirement.")
 
 /datum/outfit/job/roguetown/vet/merc/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
@@ -411,6 +419,7 @@
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
+	saiga_shoes = /obj/item/clothing/shoes/roguetown/horseshoes
 	beltl = /obj/item/quiver/arrows
 	beltr = /obj/item/flashlight/flare/torch/lantern
 	backr = /obj/item/storage/backpack/rogue/satchel/black
@@ -431,7 +440,8 @@
 		H.change_stat(STATKEY_PER, 2)
 	H.verbs |= /mob/proc/haltyell
 	H.cmode_music = 'sound/music/cmode/antag/combat_deadlyshadows.ogg' // so apparently this works for veteran, but not for advents. i dont know why.
-	SStreasury.give_money_account(ECONOMIC_RICH, H, "Retirement.")
+	if(H.mind)
+		SStreasury.give_money_account(ECONOMIC_RICH, H, "Retirement.")
 
 /datum/advclass/veteran/spy
 	name = "Ex-Spy"
@@ -481,6 +491,7 @@
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	shoes = /obj/item/clothing/shoes/roguetown/boots
+	saiga_shoes = /obj/item/clothing/shoes/roguetown/horseshoes
 	beltl = /obj/item/rogueweapon/whip
 	beltr = /obj/item/flashlight/flare/torch/lantern
 	backr = /obj/item/storage/backpack/rogue/satchel/black
@@ -504,4 +515,5 @@
 		H.change_stat(STATKEY_SPD, 1) // You get -2 speed from being old. You are still in the negative stat wise from picking old.
 		H.change_stat(STATKEY_PER, 2) // You get -2 perception from being old. I want you to at least have a positive perception, to represent that you're observant. The highest perception you can get with this is a 13, so I think we'll be okayed.
 	H.verbs |= /mob/proc/haltyell
-	SStreasury.give_money_account(ECONOMIC_RICH, H, "Retirement.")
+	if(H.mind)
+		SStreasury.give_money_account(ECONOMIC_RICH, H, "Retirement.")
