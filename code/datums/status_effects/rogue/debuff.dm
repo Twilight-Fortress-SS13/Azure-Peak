@@ -548,8 +548,8 @@
 	var/mob/living/carbon/human/climber
 
 /datum/status_effect/debuff/climbing_lfwb/on_creation(mob/living/new_owner, new_stamcost)
-    stamcost = new_stamcost
-    return ..()
+	stamcost = new_stamcost
+	return ..()
 
 /datum/status_effect/debuff/climbing_lfwb/on_apply()
 	. = ..()
@@ -730,3 +730,14 @@
 	if(iscarbon(owner))
 		var/mob/living/carbon/C = owner
 		C.remove_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN)
+
+/datum/status_effect/debuff/alreadygraggared
+	id = "alreadygraggared"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/alreadygraggared
+	effectedstats = list(STATKEY_WIL = -2, STATKEY_STR = -2, STATKEY_CON = -2)
+	duration = 30 MINUTES
+
+/atom/movable/screen/alert/status_effect/debuff/alreadygraggared
+	name = "Already Graggared"
+	desc = "Your body has been harvested by Graggar's ritual, leaving you weakened."
+	icon_state = "debuff"

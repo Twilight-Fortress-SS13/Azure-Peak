@@ -1907,6 +1907,83 @@
 	name = "Ravox vow"
 	desc = "I vowed to Ravox. I shall bring justice to Psydonia."
 
+/datum/status_effect/buff/maameat
+	id = "maameat"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/maameat
+	effectedstats = list(STATKEY_PER = 1)
+	duration = -1 // permanent
+
+/atom/movable/screen/alert/status_effect/buff/maameat
+	name = "Man-at-Arms Flesh"
+	desc = "The flesh of a Man-at-Arms, granting an increase in perception."
+	icon_state = "meatsteak"
+
+/datum/status_effect/buff/templarmeat
+	id = "templarmeat"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/templarmeat
+	effectedstats = list(STATKEY_CON = 1)
+	duration = -1 // permanent
+
+/atom/movable/screen/alert/status_effect/buff/templarmeat
+	name = "Templar Flesh"
+	desc = "The flesh of a Templar, granting a boost to constitution."
+	icon_state = "meatsteak"
+
+/datum/status_effect/buff/inquisitionmeat
+	id = "inquisitionmeat"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/inquisitionmeat
+	effectedstats = list(STATKEY_WIL = 1)
+	duration = -1 // permanent
+
+/atom/movable/screen/alert/status_effect/buff/inquisitionmeat
+	name = "Inquisition Flesh"
+	desc = "The flesh of a member of the Inquisition, granting a boost to willpower."
+	icon_state = "meatsteak"
+
+/datum/status_effect/buff/wardenmeat
+	id = "wardenmeat"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/wardenmeat
+	effectedstats = list(STATKEY_SPD = 1)
+	duration = -1 // permanent
+
+/atom/movable/screen/alert/status_effect/buff/wardenmeat
+	name = "Warden Flesh"
+	desc = "The flesh of a Warden, granting a boost in speed."
+	icon_state = "meatsteak"
+
+/datum/status_effect/buff/knightmeat
+	id = "knightmeat"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/knightmeat
+	effectedstats = list(STATKEY_STR = 1)
+	duration = -1 // permanent
+
+/atom/movable/screen/alert/status_effect/buff/knightmeat
+	name = "Knight Flesh"
+	desc = "The flesh of a Knight, granting an increase in strength."
+	icon_state = "meatsteak"
+
+/datum/status_effect/buff/priestmeat
+	id = "priestmeat"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/priestmeat
+	effectedstats = list(STATKEY_INT = 2)
+	duration = -1 // permanent
+
+/atom/movable/screen/alert/status_effect/buff/priestmeat
+	name = "Priest Flesh"
+	desc = "The flesh of a Priest, granting a boost to intelligence."
+	icon_state = "meatsteak"
+
+/datum/status_effect/buff/royalmeat
+	id = "royalmeat"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/royalmeat
+	effectedstats = list(STATKEY_LCK = 3)
+	duration = -1 // permanent
+
+/atom/movable/screen/alert/status_effect/buff/royalmeat
+	name = "Royal Flesh"
+	desc = "The flesh of royalty, granting an increase in luck."
+	icon_state = "meatsteak"
+
 #define JOYBRINGER_FILTER "joybringer"
 
 /datum/status_effect/joybringer
