@@ -873,7 +873,7 @@ tile_coordinates = list(list(1,1), list(-1,1), list(-1,-1), list(1,-1),list(0,0)
 
 /datum/special_intent/martyr_volcano_slam/process_attack()
 	var/obj/item/rogueweapon/W = iparent
-	dam = W.force_dynamic * max((howner.STASTR / 10 + howner.STAPER / 10), 1)  / 2
+	dam = W.force_dynamic * max((howner.STASTR / 10 + howner.STAPER / 10), 1)  / 1.5
 	. = ..()
 
 /datum/special_intent/martyr_volcano_slam/on_create()
@@ -1007,10 +1007,11 @@ tile_coordinates = list(list(1,1), list(-1,1), list(-1,-1), list(1,-1),list(0,0)
 	desc = "Thrusts the trident forward in a blazing arc, forming a triangular formation that ignites and pierces foes in a central pattern spreading ahead and to the sides, covering multiple tiles in front of you."
 	tile_coordinates = list(
 
-					list(0,0), 
-					list(0,1),
-		list(-1,2), list(0,2), list(1,2),
-	list(-2,3),		list(0,3),			list(2,3)
+						list(0,0),
+			list(-1,1), list(0,1), list(1,1),
+	list(-2,2),			list(0,2),			list(2,2),
+			list(-1,3),	list(0,3),	list(1,3),
+						list(0,4)
 	)
 	use_clickloc = FALSE
 	respect_adjacency = TRUE
