@@ -846,7 +846,7 @@ tile_coordinates = list(list(1,1), list(-1,1), list(-1,-1), list(1,-1),list(0,0)
 
 /datum/special_intent/martyr_volcano_slam
 	name = "Volcanic Blaze Slam"
-	desc = "Slams the ground in a square area ahead, creating two waves of fiery impact. The ground cracks open, sending blazing rocks that slow and ignite those caught in the area."
+	desc = "A powerful blow to the ground in front of the Martyr, leaving behind scorched earth and setting fire to anyone it touches. The blow is so powerful that stones fly out of the ground, striking those who remain standing."
 	tile_coordinates = list(
 		list(-1,0), list(0,0), list(1,0),
 		list(-1,1), list(0,1), list(1,1),
@@ -903,7 +903,7 @@ tile_coordinates = list(list(1,1), list(-1,1), list(-1,-1), list(1,-1),list(0,0)
 
 /datum/special_intent/martyr_blazing_sweep
 	name = "Blazing Axe Sweep"
-	desc = "Sweeps the axe in a blazing arc, unleashing two waves of fiery fury: a close semicircle igniting foes, followed by a farther semicircle that slows and burns them anew."
+	desc = "Two powerful swings of the axe forward, which spread forward in a semicircle and set fire to the heretics."
 	tile_coordinates = list(
 		list(-1,-1), list(1,-1), list(-1,0), list(0,0), list(1,0),
 		list(-2,-1, MARTYR_SWIPE_WAVE2_DELAY), list(-2,0, MARTYR_SWIPE_WAVE2_DELAY), list(-1,1, MARTYR_SWIPE_WAVE2_DELAY),
@@ -951,7 +951,7 @@ tile_coordinates = list(list(1,1), list(-1,1), list(-1,-1), list(1,-1),list(0,0)
 
 /datum/special_intent/martyr_blazing_sweep_sword
 	name = "Blazing Sword Sweep"
-	desc = "Sweeps the sword around yourself in two blazing waves, forming a square that ignites and slashes foes in all directions around you, with the second wave following quickly after."
+	desc = "Two powerful circular strikes, dealing fire damage and crushing all those fools who dared to surround the Martyr."
 	tile_coordinates = list(
 
 		list(-1,0), list(0,0), list(1,0),
@@ -1004,7 +1004,7 @@ tile_coordinates = list(list(1,1), list(-1,1), list(-1,-1), list(1,-1),list(0,0)
 
 /datum/special_intent/martyr_blazing_trident
 	name = "Blazing Trident Strike"
-	desc = "Thrusts the trident forward in a blazing arc, forming a triangular formation that ignites and pierces foes in a central pattern spreading ahead and to the sides, covering multiple tiles in front of you."
+	desc = "A powerful blow with the trident forward, releasing arcs of fire from its teeth, which form the cross of Ten and burn the heretics standing in front."
 	tile_coordinates = list(
 
 						list(0,0),
@@ -1037,7 +1037,7 @@ tile_coordinates = list(list(1,1), list(-1,1), list(-1,-1), list(1,-1),list(0,0)
 /datum/special_intent/martyr_blazing_trident/on_create()
 	. = ..()
 	howner.Immobilize(self_immob_dur)
-	to_chat(howner, span_warning("I thrust my blazing trident forward in a searing arc!"))
+	to_chat(howner, span_warning("I thrust my trident forward and brought down the power stored in it."))
 
 /datum/special_intent/martyr_blazing_trident/apply_hit(turf/T, delay = 0)
 	for(var/mob/living/L in get_hearers_in_view(0, T))
