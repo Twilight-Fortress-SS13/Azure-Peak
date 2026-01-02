@@ -534,7 +534,6 @@
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 	pants = /obj/item/clothing/under/roguetown/platelegs/holysee
 	cloak = /obj/item/clothing/cloak/holysee
-	head = /obj/item/clothing/head/roguetown/helmet/heavy/holysee
 	id = /obj/item/clothing/neck/roguetown/psicross/undivided
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife/idagger/silver = 1,
@@ -542,6 +541,15 @@
 		)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 	H.AddComponent(/datum/component/wise_tree_alert)
+	if(H.mind)
+		var/helmets = list("Armet","Bascinet")
+		var/helmets_choice = input(H, "Choose your helmet.", "TAKE UP ARMS") as anything in helmets
+		H.set_blindness(0)
+		switch(helmets_choice)
+			if("Armet")
+				head = /obj/item/clothing/head/roguetown/helmet/heavy/holysee/alt
+			if("Bascinet")
+				head = /obj/item/clothing/head/roguetown/helmet/heavy/holysee
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_UPPER_CLASS, H, "Church Funding.")
 
@@ -1156,7 +1164,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/holysee
 	name = "holy silver bascinet"
-	desc = "Branded by the Holy See, these helms are worn by it's chosen warriors. A bastion of hope in the dark nite. (Middle-click to change helmet style.)"
+	desc = "Branded by the Holy See, these helms are worn by it's chosen warriors. A bastion of hope in the dark nite."
 	icon = 'icons/roguetown/clothing/special/martyr.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/martyrhelmets.dmi'
 	bloody_icon = 'icons/effects/blood64.dmi'
@@ -1169,7 +1177,6 @@
 	icon_state = "silverbascinet"
 	item_state = "silverbascinet"
 	smeltresult = null
-	var/armetstyle = FALSE
 
 /obj/item/clothing/head/roguetown/helmet/heavy/holysee/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
 	. = ..()
@@ -1209,19 +1216,21 @@
 /obj/item/clothing/head/roguetown/helmet/heavy/holysee/ComponentInitialize()
 	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet
 
-/obj/item/clothing/head/roguetown/helmet/heavy/holysee/MiddleClick(mob/user)
-	armetstyle = !armetstyle
-	to_chat(user, span_info("My holy silver helmet shifts into the style of [armetstyle ? "a armet" : "a bascinet"]."))
-	if(armetstyle)
-		icon_state = "silverbascinet"
-		name = "holy silver bascinet"
-		desc = "Branded by the Holy See, these helms are worn by it's chosen warriors. A bastion of hope in the dark nite. (Middle-click to change helmet style.)"
-	else
-		icon_state = "silverarmet"
-		name = "holy silver armet"
-		desc = "Branded by the Holy See, these helms are worn by it's chosen warriors. A bastion of hope in the dark nite. (Middle-click to change helmet style.)"
-	update_icon()
-	user.update_inv_head()
+/obj/item/clothing/head/roguetown/helmet/heavy/holysee/alt
+	name = "holy silver armet"
+	desc = "Branded by the Holy See, these helms are worn by it's chosen warriors. A bastion of hope in the dark nite."
+	icon = 'icons/roguetown/clothing/special/martyr.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/martyrhelmets.dmi'
+	bloody_icon = 'icons/effects/blood64.dmi'
+	adjustable = CAN_CADJUST
+	emote_environment = 3
+	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
+	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
+	worn_x_dimension = 64
+	worn_y_dimension = 64
+	icon_state = "silverarmet"
+	item_state = "silverarmet"
+	smeltresult = null
 
 /obj/item/clothing/cloak/holysee
 	name = "holy silver vestments"
