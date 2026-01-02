@@ -542,14 +542,14 @@
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 	H.AddComponent(/datum/component/wise_tree_alert)
 	if(H.mind)
-		var/helmets = list("Armet","Bascinet")
+		var/helmets = list("Bascinet","Armet")
 		var/helmets_choice = input(H, "Choose your helmet.", "TAKE UP ARMS") as anything in helmets
 		H.set_blindness(0)
 		switch(helmets_choice)
-			if("Armet")
-				head = /obj/item/clothing/head/roguetown/helmet/heavy/holysee/alt
 			if("Bascinet")
 				head = /obj/item/clothing/head/roguetown/helmet/heavy/holysee
+			if("Armet")
+				head = /obj/item/clothing/head/roguetown/helmet/heavy/holysee/alt
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_UPPER_CLASS, H, "Church Funding.")
 
