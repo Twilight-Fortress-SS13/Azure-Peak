@@ -53,7 +53,7 @@
 	sellprice = 5
 
 /obj/item/reagent_containers/food/snacks/rogue/truffles/cooked
-	eat_effect = /datum/status_effect/buff/snackbuff
+	eat_effect = /datum/status_effect/buff/foodbuff
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	color = "#835b4f"
 	tastes = list("succulent truffles" = 1)
@@ -170,11 +170,11 @@
 		dir = pick(GLOB.cardinals)
 		step(src, dir)
 		playsound(src, 'sound/items/sniff.ogg', 60, FALSE)
-		stoplag(1 SECONDS)
+		sleep(10)
 		dir = pick(GLOB.cardinals)
 		step(src, dir)
 		playsound(src, 'sound/items/sniff.ogg', 60, FALSE)
-		stoplag(1 SECONDS)
+		sleep(10)
 		dir = pick(GLOB.cardinals)
 		playsound(get_turf(src), pick('modular/Creechers/sound/pig1.ogg','modular/Creechers/sound/pig2.ogg'), 100, TRUE, -1)
 		var/turf/t = get_turf(src)
@@ -191,10 +191,10 @@
 		playsound(src,'sound/misc/eat.ogg', rand(30,60), TRUE)
 		qdel(O)
 		playsound(get_turf(src), 'modular/Creechers/sound/pighangry.ogg', 130, TRUE, -1)
-		stoplag(2 SECONDS)
+		sleep(20)
 		playsound(get_turf(src), 'modular/Creechers/sound/pighangry.ogg', 130, TRUE, -1)
 		visible_message("<span class='notice'>The pig shivers.</span>")
-		stoplag(1 SECONDS)
+		sleep(10)
 		death()
 	if(istype(O, /obj/item/reagent_containers/food/snacks/grown/potato/rogue))
 		if(hangry_meter > 2)

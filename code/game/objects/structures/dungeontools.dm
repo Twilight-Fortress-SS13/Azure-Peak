@@ -58,9 +58,9 @@
 	if(!activated)
 		activated = TRUE
 		playsound(src, 'sound/foley/smash_rock.ogg', 100)
-		stoplag(1.5 SECONDS)
+		sleep(15)
 		playsound(src, 'sound/foley/smash_rock.ogg', 70)
-		stoplag(1.5 SECONDS)
+		sleep(15)
 		playsound(src, 'sound/foley/smash_rock.ogg', 40)
 		visible_message("That sounded pretty loud...")
 

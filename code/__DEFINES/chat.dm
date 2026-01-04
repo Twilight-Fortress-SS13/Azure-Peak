@@ -63,6 +63,3 @@
 // For deadchat control
 #define DEMOCRACY_MODE "democracy"
 #define ANARCHY_MODE "anarchy"
-
-///
-#define mentor_block(str) ("<div class='chat_box mentor_block'>" + str + "</div>")

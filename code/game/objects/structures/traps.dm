@@ -199,14 +199,8 @@
 
 /obj/structure/trap/stun/hunter/flare()
 	..()
-	if(!stored_item || QDELETED(stored_item))
-		return
-	var/turf/T = get_turf(src)
-	if(!T)
-		return
-	stored_item.forceMove(T)
-	if(!QDELETED(src))
-		forceMove(stored_item)
+	stored_item.forceMove(get_turf(src))
+	forceMove(stored_item)
 	if(caught)
 		stored_item.announce_fugitive()
 		caught = FALSE

@@ -27,9 +27,6 @@
 	var/static/sex_id = 0
 	var/our_sex_id = 0 //this is so we can have more then 1 sex id open at once
 
-	/// Show progress bar
-	var/show_progress = 1
-
 
 /datum/sex_session/New(mob/living/carbon/human/session_user, mob/living/carbon/human/session_target)
 	user = session_user
@@ -261,45 +258,45 @@
 /datum/sex_session/proc/get_force_string()
 	switch(force)
 		if(SEX_FORCE_LOW)
-			return "<font color='#eac8de'>НЕЖНО</font>"
+			return "<font color='#eac8de'>GENTLE</font>"
 		if(SEX_FORCE_MID)
-			return "<font color='#e9a8d1'>НАСТОЙЧИВО</font>"
+			return "<font color='#e9a8d1'>FIRM</font>"
 		if(SEX_FORCE_HIGH)
-			return "<font color='#f05ee1'>ГРУБО</font>"
+			return "<font color='#f05ee1'>ROUGH</font>"
 		if(SEX_FORCE_EXTREME)
-			return "<font color='#d146f5'>НЕУМОЛИМО</font>"
+			return "<font color='#d146f5'>BRUTAL</font>"
 
 /datum/sex_session/proc/get_speed_string()
 	switch(speed)
 		if(SEX_SPEED_LOW)
-			return "<font color='#eac8de'>МЕДЛЕННО</font>"
+			return "<font color='#eac8de'>SLOW</font>"
 		if(SEX_SPEED_MID)
-			return "<font color='#e9a8d1'>ПОСТЕПЕННО</font>"
+			return "<font color='#e9a8d1'>STEADY</font>"
 		if(SEX_SPEED_HIGH)
-			return "<font color='#f05ee1'>БЫСТРО</font>"
+			return "<font color='#f05ee1'>QUICK</font>"
 		if(SEX_SPEED_EXTREME)
-			return "<font color='#d146f5'>НЕУМОЛИМО</font>"
+			return "<font color='#d146f5'>UNRELENTING</font>"
 
 /datum/sex_session/proc/get_manual_arousal_string()
 	switch(manual_arousal)
 		if(SEX_MANUAL_AROUSAL_DEFAULT)
-			return "<font color='#eac8de'>ПЕРЕМЕННАЯ ЭРЕКЦИЯ</font>"
+			return "<font color='#eac8de'>NATURAL</font>"
 		if(SEX_MANUAL_AROUSAL_UNAROUSED)
-			return "<font color='#e9a8d1'>СЛАБАЯ ЭРЕКЦИЯ</font>"
+			return "<font color='#e9a8d1'>UNAROUSED</font>"
 		if(SEX_MANUAL_AROUSAL_PARTIAL)
-			return "<font color='#f05ee1'>НОРМАЛЬНАЯ ЭРЕКЦИЯ</font>"
+			return "<font color='#f05ee1'>PARTIALLY ERECT</font>"
 		if(SEX_MANUAL_AROUSAL_FULL)
-			return "<font color='#d146f5'>СИЛЬНАЯ ЭРЕКЦИЯ</font>"
+			return "<font color='#d146f5'>FULLY ERECT</font>"
 /datum/sex_session/proc/get_generic_force_adjective()
 	switch(force)
 		if(SEX_FORCE_LOW)
-			return pick(list("нежно", "заботливо", "ласково", "мягко", "осторожно", "неторопливо"))
+			return pick(list("gently", "carefully", "tenderly", "gingerly", "delicately", "lazily"))
 		if(SEX_FORCE_MID)
-			return pick(list("решительно", "энергично", "страстно", "уверенно", "увлеченно"))
+			return pick(list("firmly", "vigorously", "eagerly", "steadily", "intently"))
 		if(SEX_FORCE_HIGH)
-			return pick(list("грубо", "небрежно", "жестко", "пылко", "свирепо"))
+			return pick(list("roughly", "carelessly", "forcefully", "fervently", "fiercely"))
 		if(SEX_FORCE_EXTREME)
-			return pick(list("жестоко", "неистово", "неумолимо", "свирепо", "безжалостно"))
+			return pick(list("brutally", "violently", "relentlessly", "savagely", "mercilessly"))
 
 /datum/sex_session/proc/spanify_force(string)
 	switch(force)
@@ -322,7 +319,7 @@
 /datum/sex_session/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "SexSession", "Утолить Желания")
+		ui = new(user, src, "SexSession", "Sate Desires")
 		ui.open()
 
 /datum/sex_session/ui_state(mob/user)
@@ -346,8 +343,8 @@
 	data["actions"] = actions
 
 	// Static UI strings
-	data["speed_names"] = list("МЕДЛЕННО", "ПОСТЕПЕННО", "БЫСТРО", "НЕУМОЛИМО")
-	data["force_names"] = list("НЕЖНО", "НАСТОЙЧИВО", "ГРУБО", "ЖЕСТОКО")
+	data["speed_names"] = list("SLOW", "STEADY", "QUICK", "UNRELENTING")
+	data["force_names"] = list("GENTLE", "FIRM", "ROUGH", "BRUTAL")
 	data["has_penis"] = user.getorganslot(ORGAN_SLOT_PENIS) ? TRUE : FALSE
 
 	// Check if user has knotted penis
@@ -450,7 +447,7 @@
 		SStgui.update_uis(src)
 
 /datum/sex_session/proc/get_sex_session_header_text()
-	return "Соитие с [target?.name || "Unknown"]..."
+	return "Interacting with [target?.name || "Unknown"]..."
 
 /datum/sex_session/proc/get_session_tab_content()
 	var/list/content = list()

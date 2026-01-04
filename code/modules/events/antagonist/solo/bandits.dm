@@ -5,17 +5,17 @@
 		TAG_VILLIAN,
 		TAG_LOOT
 	)
-	roundstart = FALSE
+	roundstart = TRUE
 	antag_flag = ROLE_BANDIT
 	shared_occurence_type = SHARED_MINOR_THREAT
 
 	restricted_roles = DEFAULT_ANTAG_BLACKLISTED_ROLES
-	base_antags = 0
-	maximum_antags = 0
+	base_antags = 5
+	maximum_antags = 10
 
 	earliest_start = 0 SECONDS
 
-	weight = 0
+	weight = 18
 
 	typepath = /datum/round_event/antagonist/solo/bandits
 	antag_datum = /datum/antagonist/bandit

@@ -35,89 +35,16 @@
 	effectedstats = list(STATKEY_STR = 1, STATKEY_WIL = 1)
 	duration = 2 MINUTES
 
-/datum/status_effect/buff/snackbuff
-	id = "snack"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/snackbuff
-	effectedstats = list(STATKEY_WIL = 1)
-	duration = 8 MINUTES
-
-/atom/movable/screen/alert/status_effect/buff/snackbuff
-	name = "Good snack"
-	desc = "Better than plain bread. Tasty."
-	icon_state = "foodbuff"
-
-/datum/status_effect/buff/snackbuff/on_apply() //can't stack two snack buffs, it'll keep the highest one
-	. = ..()
-	owner.add_stress(/datum/stressevent/goodsnack)
-	if(owner.has_status_effect(/datum/status_effect/buff/greatsnackbuff))
-		owner.remove_status_effect(/datum/status_effect/buff/snackbuff)
-
-
-/datum/status_effect/buff/greatsnackbuff
-	id = "greatsnack"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/greatsnackbuff
+/datum/status_effect/buff/foodbuff
+	id = "foodbuff"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/foodbuff
 	effectedstats = list(STATKEY_CON = 1,STATKEY_WIL = 1)
-	duration = 10 MINUTES
+	duration = 15 MINUTES
 
-/atom/movable/screen/alert/status_effect/buff/greatsnackbuff
-	name = "Great Snack!"
-	desc = "Nothing like a great and nutritious snack to help you on that final strech. I feel invigorated."
+/atom/movable/screen/alert/status_effect/buff/foodbuff
+	name = "Great Meal"
+	desc = ""
 	icon_state = "foodbuff"
-
-/datum/status_effect/buff/greatsnackbuff/on_apply()
-	. = ..()
-	owner.add_stress(/datum/stressevent/greatsnack)
-	if(owner.has_status_effect(/datum/status_effect/buff/snackbuff)) //most of the time you technically shouldn't need to check this, but otherwise you get runtimes, so keep it
-		owner.remove_status_effect(/datum/status_effect/buff/snackbuff)
-
-/datum/status_effect/buff/mealbuff
-	id = "meal"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/mealbuff
-	effectedstats = list(STATKEY_CON = 1)
-	duration = 30 MINUTES
-
-/atom/movable/screen/alert/status_effect/buff/mealbuff
-	name = "Good meal"
-	desc = "A meal a day keeps the barber away, or at least it makes it slighly easier."
-	icon_state = "foodbuff"
-
-/datum/status_effect/buff/mealbuff/on_apply()
-	. = ..()
-	owner.add_stress(/datum/stressevent/goodmeal)
-	if(owner.has_status_effect(/datum/status_effect/buff/greatmealbuff))
-		owner.remove_status_effect(/datum/status_effect/buff/mealbuff)
-
-/datum/status_effect/buff/greatmealbuff
-	id = "greatmeal"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/greatmealbuff
-	effectedstats = list(STATKEY_CON = 1, STATKEY_WIL = 1)
-	duration = 30 MINUTES
-
-/atom/movable/screen/alert/status_effect/buff/greatmealbuff
-	name = "Great meal!"
-	desc = "That meal was something akin to a noble's feast! It's bound to keep me energized for an entire day."
-	icon_state = "foodbuff"
-
-/datum/status_effect/buff/greatmealbuff/on_apply()
-	. = ..()
-	owner.add_stress(/datum/stressevent/greatmeal)
-	if(owner.has_status_effect(/datum/status_effect/buff/mealbuff))
-		owner.remove_status_effect(/datum/status_effect/buff/mealbuff) //can't stack two meal buffs, it'll keep the highest one
-
-/datum/status_effect/buff/sweet
-	id = "sugar"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/sweet
-	effectedstats = list(STATKEY_LCK = 1)
-	duration = 8 MINUTES
-
-/atom/movable/screen/alert/status_effect/buff/sweet
-	name = "Sweet embrace"
-	desc = "Sweets are always a sign of good luck, everything goes well when you eat some of them."
-	icon_state = "foodbuff"
-
-/datum/status_effect/buff/sweet/on_apply()
-	. = ..()
-	owner.add_stress(/datum/stressevent/sweet)
 
 /datum/status_effect/buff/druqks
 	id = "druqks"
@@ -438,22 +365,22 @@
 /atom/movable/screen/alert/status_effect/buff/guardbuffone
 	name = "Vigilant Guardsman"
 	desc = "My home. I watch vigilantly and respond swiftly."
-	icon_state = "guardsman"
+	icon_state = "buff"
 
 /atom/movable/screen/alert/status_effect/buff/barkeepbuff
 	name = "Vigilant Tavernkeep"
 	desc = "My home. I watch vigilantly and respond swiftly."
-	icon_state = "drunk"
+	icon_state = "buff"
 
 /atom/movable/screen/alert/status_effect/buff/knightbuff
 	name = "Sworn Defender"
 	desc = "I've sworn an oath to defend this castle. My resolve will not waver."
-	icon_state = "guardsman"
+	icon_state = "buff"
 
 /atom/movable/screen/alert/status_effect/buff/wardenbuff
 	name = "Woodsman"
 	desc = "I've trekked these woods for some time now. I find traversal easier here."
-	icon_state = "guardsman"
+	icon_state = "buff"
 
 /datum/status_effect/buff/wardenbuff
 	id = "wardenbuff"
@@ -503,7 +430,7 @@
 /atom/movable/screen/alert/status_effect/buff/healing
 	name = "Healing Miracle"
 	desc = "Divine intervention relieves me of my ailments."
-	icon_state = "lesser_heal"
+	icon_state = "buff"
 
 #define MIRACLE_HEALING_FILTER "miracle_heal_glow"
 
@@ -557,12 +484,12 @@
 /atom/movable/screen/alert/status_effect/buff/healing/campfire
 	name = "Camp Rest"
 	desc = "The warmth of a fire and a bed soothes my ails."
-	icon_state = "campfire"
+	icon_state = "buff"
 
 /atom/movable/screen/alert/status_effect/buff/campfire_stamina
 	name = "Warming Respite"
 	desc = "A break by the fire restores some of my energy."
-	icon_state = "campfire"
+	icon_state = "buff"
 
 
 #define CAMPFIRE_BASE_FILTER "campfire_stamina"
@@ -1174,7 +1101,7 @@
 /atom/movable/screen/alert/status_effect/buff/xylix_joy
 	name = "Trickster's Joy"
 	desc = "The sound of merriment fills me with fortune."
-	icon_state = "joy"
+	icon_state = "buff"
 
 /datum/status_effect/buff/xylix_joy
 	id = "xylix_joy"
@@ -1526,7 +1453,7 @@
 	return
 
 /datum/status_effect/buff/clash/limbguard/guard_on_kick()
-	return
+	return	
 
 #define BLOODRAGE_FILTER "bloodrage"
 

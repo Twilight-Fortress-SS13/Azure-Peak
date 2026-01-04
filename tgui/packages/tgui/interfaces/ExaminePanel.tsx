@@ -7,17 +7,15 @@ import { Window } from '../layouts';
 import { ExaminePanelData } from './ExaminePanelData';
 import { FlavorTextPage } from './ExaminePanelPages';
 import { ImageGalleryPage } from './ExaminePanelPages';
-import { NSFWHeadshotPage } from './ExaminePanelPages';
 
 enum Page {
   FlavorText,
   ImageGallery,
-  NSFWHeadshot,
 }
 
 export const ExaminePanel = (props) => {
   const { act, data } = useBackend<ExaminePanelData>();
-  const { is_vet, character_name, is_playing, has_song, img_gallery, is_naked, nsfw_headshot } = data;
+  const { is_vet, character_name, is_playing, has_song, img_gallery } = data;
   const [currentPage, setCurrentPage] = useState(Page.FlavorText);
 
   let pageContents;
@@ -28,9 +26,6 @@ export const ExaminePanel = (props) => {
       break;
     case Page.ImageGallery:
       pageContents = <ImageGalleryPage />;
-      break;
-	case Page.NSFWHeadshot:
-      pageContents = <NSFWHeadshotPage />;
       break;
   }
 
@@ -58,7 +53,7 @@ export const ExaminePanel = (props) => {
       </>}>
       <Window.Content>
         <Stack vertical fill>
-          {((img_gallery.length > 0 && !is_naked) || (img_gallery.length > 0 && is_naked && !nsfw_headshot)) && (
+          {img_gallery.length > 0 && (
           <Stack>
             <Stack.Item grow>
               <PageButton
@@ -80,60 +75,7 @@ export const ExaminePanel = (props) => {
             </Stack.Item>
           </Stack>
           )}
-		  {(!(img_gallery.length > 0) && is_naked && nsfw_headshot) && (
-          <Stack>
-            <Stack.Item grow>
-              <PageButton
-              currentPage={currentPage}
-              page={Page.FlavorText}
-              setPage={setCurrentPage}
-              >
-                Flavor Text
-              </PageButton>
-            </Stack.Item>
-            <Stack.Item grow>
-              <PageButton
-              currentPage={currentPage}
-              page={Page.NSFWHeadshot}
-              setPage={setCurrentPage}
-              >
-                Nudeshot
-              </PageButton>
-            </Stack.Item>
-          </Stack>
-          )}
-		  {(img_gallery.length > 0 && is_naked && nsfw_headshot) && (
-          <Stack>
-            <Stack.Item grow>
-              <PageButton
-              currentPage={currentPage}
-              page={Page.FlavorText}
-              setPage={setCurrentPage}
-              >
-                Flavor Text
-              </PageButton>
-            </Stack.Item>
-			<Stack.Item grow>
-              <PageButton
-              currentPage={currentPage}
-              page={Page.ImageGallery}
-              setPage={setCurrentPage}
-              >
-                Image Gallery
-              </PageButton>
-            </Stack.Item>
-            <Stack.Item grow>
-              <PageButton
-              currentPage={currentPage}
-              page={Page.NSFWHeadshot}
-              setPage={setCurrentPage}
-              >
-                Nudeshot
-              </PageButton>
-            </Stack.Item>
-          </Stack>
-          )}
-          {(img_gallery.length > 0 || (is_naked && nsfw_headshot)) && (<Stack.Divider />)}
+          {img_gallery.length > 0 && (<Stack.Divider />)}
           <Stack.Item grow position="relative" overflowX="hidden" overflowY="auto">
             {pageContents}
           </Stack.Item>

@@ -65,19 +65,19 @@
 	H.equipOutfit(/datum/outfit/job/roguetown/unbound_deathknight)
 
 /datum/antagonist/unbound_death_knight/greet()
-	stoplag(5 SECONDS) // Lets all other messages finish before we start.
+	sleep(5 SECONDS) // Lets all other messages finish before we start.
 	to_chat(owner, span_warning("You feel the power of unknown energy course through you."))
-	stoplag(1 SECONDS)
+	sleep(1 SECONDS)
 	to_chat(owner, span_warning("You are... Awake? But how?"))
-	stoplag(1 SECONDS)
+	sleep(1 SECONDS)
 	to_chat(owner, span_warning("The realization of what is happening slowly overwhelms you with horror..."))
-	stoplag(2 SECONDS)
+	sleep(2 SECONDS)
 	to_chat(owner, "<span class='pulsedeath'>Your master is gone!</span>")
-	stoplag(1 SECONDS)
+	sleep(1 SECONDS)
 	to_chat(owner, "<span class='pulsedeath'>You have no orders!</span>")
-	stoplag(1 SECONDS)
+	sleep(1 SECONDS)
 	to_chat(owner, "<span class='pulsedeath'>You have no goal!</span>")
-	stoplag(2 SECONDS)
+	sleep(2 SECONDS)
 	to_chat(owner, "<span class='pulsedeath'>You have no reason to be here. But you are awake.</span>")
 
 /datum/antagonist/unbound_death_knight/proc/forge_objectives()

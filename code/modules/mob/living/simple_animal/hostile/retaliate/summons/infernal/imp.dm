@@ -82,7 +82,7 @@
 	new /obj/item/magic/infernal/ash(deathspot)
 	new /obj/item/magic/infernal/ash(deathspot)
 	update_icon()
-	stoplag(1)
+	sleep(1)
 	qdel(src)
 
 

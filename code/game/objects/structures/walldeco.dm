@@ -218,7 +218,7 @@
 	..()
 
 /obj/structure/fluff/walldeco/customflag
-	name = "Twilight Axis flag"
+	name = "Azure Peak flag"
 	desc = "A banner flutters in the breeze in the proud heraldic colors of the Duchy."
 	icon_state = "wallflag"
 

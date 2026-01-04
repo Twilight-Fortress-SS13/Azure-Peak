@@ -61,7 +61,7 @@ export const ProgressBars = (props: ProgressBarsProps) => {
       <Stack vertical>
         <Stack.Item>
           <CustomProgressBar
-            label="Возбуждение"
+            label="Arousal"
             value={arousal}
             gradient="linear-gradient(90deg, #ff4444, #cc0000)"
           />

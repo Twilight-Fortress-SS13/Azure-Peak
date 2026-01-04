@@ -3,7 +3,7 @@
 	icon = 'icons/roguetown/items/books.dmi'
 	icon_state = "basic_book_0"
 	slot_flags = ITEM_SLOT_HIP
-	base_icon_state = "basic_book"
+	var/base_icon_state = "basic_book"
 	unique = TRUE
 	firefuel = 5 MINUTES
 	dropshrink = 0.6

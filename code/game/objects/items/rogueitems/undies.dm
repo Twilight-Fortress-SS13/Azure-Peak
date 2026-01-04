@@ -75,41 +75,41 @@
 // Craft
 
 /datum/crafting_recipe/roguetown/sewing/undies
-	name = "briefs"
+	name = "briefs (1 fibers, 1 cloth)"
 	result = list(/obj/item/undies)
 	reqs = list(/obj/item/natural/cloth = 1,
 				/obj/item/natural/fibers = 1)
 	craftdiff = 2
 
 /datum/crafting_recipe/roguetown/sewing/bikini
-	name = "bikini"
+	name = "bikini (1 fibers, 2 cloth)"
 	result = list(/obj/item/undies/bikini)
 	reqs = list(/obj/item/natural/cloth = 2,
 				/obj/item/natural/fibers = 1)
 	craftdiff = 2
 
 /datum/crafting_recipe/roguetown/sewing/panties
-	name = "panties"
+	name = "panties (1 cloth)"
 	result = list(/obj/item/undies/panties)
 	reqs = list(/obj/item/natural/cloth = 1)
 	craftdiff = 2
 
 /datum/crafting_recipe/roguetown/sewing/leotard
-	name = "leotard"
+	name = "leotard (1 fibers, 1 silk)"
 	result = list(/obj/item/undies/leotard)
 	reqs = list(/obj/item/natural/silk = 1,
 				/obj/item/natural/fibers = 1)
 	craftdiff = 3
 
 /datum/crafting_recipe/roguetown/sewing/athletic_leotard
-	name = "athletic leotard"
+	name = "athletic leotard (1 fibers, 1 silk)"
 	result = list(/obj/item/undies/athletic_leotard)
 	reqs = list(/obj/item/natural/silk = 1,
 				/obj/item/natural/fibers = 1)
 	craftdiff = 3
 
 /datum/crafting_recipe/roguetown/sewing/braies
-	name = "braies"
+	name = "braies (1 cloth)"
 	result = list(/obj/item/undies/braies)
 	reqs = list(/obj/item/natural/cloth = 1)
 	craftdiff = 2

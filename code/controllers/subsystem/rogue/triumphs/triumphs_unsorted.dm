@@ -17,8 +17,6 @@
 	var/input = input(src, "how much") as num
 	if(mob && input)
 		mob.adjust_triumphs(input)
-		log_admin("[key_name(usr)]: modified his triumphs [input]")
-		message_admins(span_adminnotice("[key_name(usr)]: modified his triumphs [input]"))
 
 
 
