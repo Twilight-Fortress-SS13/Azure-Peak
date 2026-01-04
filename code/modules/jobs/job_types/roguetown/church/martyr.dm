@@ -24,13 +24,37 @@
 	var/death_time
 	var/last_time
 
-/datum/component/martyrweapon/Initialize()
+	var/list/active_intents = list()
+	var/list/active_intents_wielded = list()
+	var/list/inactive_intents = list()
+	var/list/inactive_intents_wielded = list()
+
+	var/active_safe_damage
+	var/active_safe_damage_wielded
+
+/datum/component/martyrweapon/Initialize(list/intents, list/intents_w, active_damage, active_damage_wielded)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
+
+	if(length(intents))
+		active_intents = intents.Copy()
+	if(length(intents_w))
+		active_intents_wielded = intents_w.Copy()
+
+	if(active_damage)
+		active_safe_damage = active_damage
+	if(active_damage_wielded)
+		active_safe_damage_wielded = active_damage_wielded
+
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(on_equip))
 	RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(on_drop))
 	RegisterSignal(parent, COMSIG_ITEM_AFTERATTACK, PROC_REF(item_afterattack))
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
+
+	var/obj/item/I = parent
+	inactive_intents = I.possible_item_intents.Copy()
+	inactive_intents_wielded = I.gripped_intents.Copy()
+
 	START_PROCESSING(SSdcs, src)
 
 /datum/component/martyrweapon/process()
@@ -71,11 +95,8 @@
 					deathprocess()
 				else
 					to_chat(current_holder, span_notice("You manage to endure it, this time."))
-		if(STATE_MARTYR)
-			C.freak_out()
-			deathprocess()
 
-		if(STATE_MARTYRULT)
+		if(STATE_MARTYR, STATE_MARTYRULT)
 			C.freak_out()
 			deathprocess()
 
@@ -150,10 +171,7 @@
 			switch(current_state)
 				if(STATE_SAFE)
 					return
-				if(STATE_MARTYR)
-					if(prob(ignite_chance))
-						mob_ignite(M)
-				if(STATE_MARTYRULT)
+				if(STATE_MARTYR, STATE_MARTYRULT)
 					if(prob(ignite_chance))
 						mob_ignite(M)
 		else
@@ -261,8 +279,10 @@
 		switch(state)
 			if(STATE_SAFE) //Lowered damage due to BURN damage type and SAFE activation
 				var/obj/item/I = parent
-				I.force -= 10
-				I.force_wielded -= 15
+				if(active_safe_damage)
+					I.force = active_safe_damage
+				if(active_safe_damage_wielded)
+					I.force_wielded = active_safe_damage_wielded
 				return
 			if(STATE_MARTYR)
 				current_holder.STASTR += stat_bonus_martyr
@@ -273,26 +293,6 @@
 				current_holder.STAPER += stat_bonus_martyr
 				current_holder.STALUC += stat_bonus_martyr
 				H.energy_add(9999)
-			if(STATE_MARTYRULT)	//This is ONLY accessed during the last 30 seconds of the shorter variant.
-				current_holder.STASTR = 20
-				current_holder.STASPD = 20
-				current_holder.STACON = 20
-				current_holder.STAWIL = 20
-				current_holder.STAINT = 20
-				current_holder.STAPER = 20
-				current_holder.STALUC = 20
-				H.energy_add(9999)//Go get 'em, Martyrissimo, it's your last 30 seconds, it's a frag or be fragged world
-				H.adjust_skillrank(/datum/skill/combat/wrestling, 6, FALSE)
-				H.adjust_skillrank(/datum/skill/combat/swords, 6, FALSE)
-				H.adjust_skillrank(/datum/skill/combat/axes, 6, FALSE)
-				H.adjust_skillrank(/datum/skill/combat/polearms, 6, FALSE)
-				H.adjust_skillrank(/datum/skill/combat/maces, 6, FALSE)
-				H.adjust_skillrank(/datum/skill/combat/unarmed, 6, FALSE)
-				H.adjust_skillrank(/datum/skill/misc/athletics, 6, FALSE)
-				ADD_TRAIT(current_holder, TRAIT_INFINITE_STAMINA, TRAIT_GENERIC)
-				current_holder.visible_message(span_warning("[current_holder] rises up, empowered once more!"), span_warningbig("I rise again! I can feel my god flow through me!"))
-				flash_lightning(current_holder)
-				current_holder.revive(full_heal = TRUE, admin_revive = TRUE)
 
 //This is called regardless of the activated state (safe or not)
 /datum/component/martyrweapon/proc/deactivate()
@@ -301,19 +301,8 @@
 		REMOVE_TRAIT(parent, TRAIT_NODROP, TRAIT_GENERIC)	//The weapon can be moved by the Priest again (or used, I suppose)
 	is_active = FALSE
 	I.damtype = BRUTE
-	if(istype(I, /obj/item/rogueweapon/sword/long/martyr) || istype(I, /obj/item/rogueweapon/greataxe/steel/doublehead/martyr) || istype(I, /obj/item/rogueweapon/mace/goden/martyr) || istype(I, /obj/item/rogueweapon/spear/partizan/martyr))
-		if(istype(I, /obj/item/rogueweapon/sword/long/martyr))
-			I.possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike)
-			I.gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/chop)
-		else if(istype(I, /obj/item/rogueweapon/greataxe/steel/doublehead/martyr))
-			I.possible_item_intents = list(/datum/intent/axe/cut, /datum/intent/axe/chop, /datum/intent/axe/bash)
-			I.gripped_intents = list(/datum/intent/axe/cut/battle/greataxe, /datum/intent/axe/chop/battle/greataxe, /datum/intent/axe/bash)
-		else if(istype(I, /obj/item/rogueweapon/mace/goden/martyr))
-			I.possible_item_intents = list(/datum/intent/mace/strike)
-			I.gripped_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash, /datum/intent/effect/daze, /datum/intent/effect/hobble)
-		else if(istype(I, /obj/item/rogueweapon/spear/partizan/martyr))
-			I.possible_item_intents = list(/datum/intent/spear/thrust, /datum/intent/spear/bash)
-			I.gripped_intents = list(/datum/intent/spear/thrust, /datum/intent/rend/reach/partizan, /datum/intent/partizan/peel, /datum/intent/spear/bash)
+	I.possible_item_intents = inactive_intents
+	I.gripped_intents = inactive_intents_wielded
 	current_holder.update_a_intents()
 	I.force = initial(I.force)
 	I.force_wielded = initial(I.force_wielded)
@@ -377,18 +366,8 @@
 		flash_lightning(user)
 		var/obj/item/I = parent
 		I.damtype = BURN	//Changes weapon damage type to fire
-		if(istype(I, /obj/item/rogueweapon/sword/long/martyr))
-			I.possible_item_intents = list(/datum/intent/sword/cut/martyr, /datum/intent/sword/thrust/martyr, /datum/intent/sword/strike/martyr)
-			I.gripped_intents = list(/datum/intent/sword/cut/martyr, /datum/intent/sword/thrust/martyr, /datum/intent/sword/strike/martyr, /datum/intent/sword/chop/martyr)
-		else if(istype(I, /obj/item/rogueweapon/greataxe/steel/doublehead/martyr))
-			I.possible_item_intents = list(/datum/intent/axe/cut/martyr, /datum/intent/axe/chop/martyr, /datum/intent/axe/bash/martyr)
-			I.gripped_intents = list(/datum/intent/axe/cut/battle/greataxe/martyr, /datum/intent/axe/chop/battle/greataxe/martyr, /datum/intent/axe/bash/martyr)
-		else if(istype(I, /obj/item/rogueweapon/mace/goden/martyr))
-			I.possible_item_intents = list(/datum/intent/mace/strike/martyr)
-			I.gripped_intents = list(/datum/intent/mace/strike/martyr, /datum/intent/mace/smash/martyr, /datum/intent/effect/daze/martyr, /datum/intent/effect/hobble/martyr)
-		else if(istype(I, /obj/item/rogueweapon/spear/partizan/martyr))
-			I.possible_item_intents = list(/datum/intent/spear/thrust/martyr, /datum/intent/spear/bash/martyr)
-			I.gripped_intents = list(/datum/intent/spear/thrust/martyr, /datum/intent/rend/reach/partizan/martyr, /datum/intent/partizan/peel/martyr, /datum/intent/spear/bash/martyr)
+		I.possible_item_intents = active_intents
+		I.gripped_intents = active_intents_wielded
 		user.update_a_intents()
 		I.slot_flags = null	//Can't sheathe a burning sword
 
@@ -401,22 +380,48 @@
 			if(STATE_SAFE)
 				end_activation = world.time + safe_duration	//Only a duration and nothing else.
 				adjust_stats(current_state)	//Lowers the damage of the sword due to safe activation.
+				current_holder.energy = current_holder.max_energy
+				current_holder.stamina = 0
+				I.sharpness = I.max_blade_int
 			if(STATE_MARTYR)
 				end_activation = world.time + martyr_duration
 				I.max_integrity = 2000				//If you're committing, we repair the weapon and give it a boost so it lasts the whole fight
 				I.obj_integrity = I.max_integrity
+
+				I.max_blade_int = 9999
+				I.sharpness = I.max_blade_int
 				adjust_stats(current_state)	//Gives them extra stats.
+
+				current_holder.stamina = 0
+				current_holder.energy = current_holder.max_energy
+
+				current_holder.adjust_skillrank_down_to(/datum/skill/combat/wrestling, SKILL_LEVEL_NONE, TRUE)
 			if(STATE_MARTYRULT)
 				end_activation = world.time + ultimate_duration
 				I.max_integrity = 9999				//why not, they got 2 mins anyway
 				I.obj_integrity = I.max_integrity
-				current_holder.STASTR += stat_bonus_martyr
-				current_holder.STASPD += stat_bonus_martyr
-				current_holder.STACON += stat_bonus_martyr
-				current_holder.STAWIL += stat_bonus_martyr
-				current_holder.STAINT += stat_bonus_martyr
-				current_holder.STAPER += stat_bonus_martyr
-				current_holder.STALUC += stat_bonus_martyr
+
+				I.max_blade_int = 9999
+				I.sharpness = I.max_blade_int
+				
+				current_holder.adjust_skillrank(/datum/skill/misc/athletics, 6, FALSE)
+
+				current_holder.STASTR = 20
+				current_holder.STASPD = 20
+				current_holder.STACON = 20
+				current_holder.STAWIL = 20
+				current_holder.STAINT = 20
+				current_holder.STAPER = 20
+				current_holder.STALUC = 20
+
+				current_holder.energy = current_holder.max_energy
+				current_holder.stamina = 0
+
+				current_holder.adjust_skillrank_down_to(/datum/skill/combat/wrestling, SKILL_LEVEL_NONE, TRUE)
+				current_holder.adjust_skillrank(/datum/skill/combat/swords, 6, FALSE)
+				current_holder.adjust_skillrank(/datum/skill/combat/unarmed, 6, FALSE)
+
+				ADD_TRAIT(current_holder, TRAIT_INFINITE_STAMINA, TRAIT_GENERIC)
 			else
 				end_activation = world.time + safe_duration
 
@@ -457,17 +462,17 @@
 	allowed_races = RACES_NO_CONSTRUCT
 	allowed_patrons = list(/datum/patron/divine/undivided)
 	outfit = /datum/outfit/job/roguetown/martyr
-	min_pq = 10 //Cus it's a Martyr of the Ten. Get it.
+	min_pq = 15 //Cus it's a Martyr of the Ten. Get it.
 	max_pq = null
 	round_contrib_points = 4
 	total_positions = 1
 	spawn_positions = 1
 	display_order = JDO_MARTYR
-
+	same_job_respawn_delay = 30 MINUTES
 	give_bank_account = TRUE
 
 	cmode_music = 'sound/music/combat_martyrsafe.ogg'
-	job_traits = list(TRAIT_HEAVYARMOR, TRAIT_STEELHEARTED, TRAIT_SILVER_BLESSED, TRAIT_EMPATH, TRAIT_MEDICINE_EXPERT, TRAIT_DUALWIELDER, TRAIT_CLERGY)
+	job_traits = list(TRAIT_HEAVYARMOR, TRAIT_STEELHEARTED, TRAIT_SILVER_BLESSED, TRAIT_EMPATH, TRAIT_MEDICINE_EXPERT, TRAIT_DUALWIELDER, TRAIT_CLERGY, TRAIT_TEMPO)
 
 	//No undeath-adjacent virtues for a role that can sacrifice itself. The Ten like their sacrifices 'pure'. (I actually didn't want to code returning those virtue traits post-sword use)
 	//They get those traits during sword activation, anyway.
@@ -620,7 +625,12 @@
 	else
 		SSroguemachine.martyrweapon = src
 	if(!gc_destroyed)
-		AddComponent(/datum/component/martyrweapon)
+	  var/list/active_intents = list(/datum/intent/sword/cut/martyr, /datum/intent/sword/thrust/martyr, /datum/intent/sword/strike/martyr)
+	  var/list/active_intents_wielded = list(/datum/intent/sword/cut/martyr, /datum/intent/sword/thrust/martyr, /datum/intent/sword/strike/martyr, /datum/intent/sword/chop/martyr)
+	  var/safe_damage = 20
+	  var/safe_damage_wielded = 25
+	  AddComponent(/datum/component/martyrweapon, active_intents, active_intents_wielded, safe_damage, safe_damage_wielded)
+   
 /obj/item/rogueweapon/sword/long/martyr/proc/anti_stall()
 	src.visible_message(span_danger("The Martyr's sword dissolved into sparkling dust, which instantly rose up and was carried away by the wind."))
 	SSroguemachine.martyrweapon = null
