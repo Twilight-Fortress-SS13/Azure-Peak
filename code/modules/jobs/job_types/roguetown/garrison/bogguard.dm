@@ -20,9 +20,10 @@
 	advclass_cat_rolls = list(CTAG_WARDEN = 20)
 
 	give_bank_account = TRUE
-	min_pq = 0
+	min_pq = 3
 	max_pq = null
 	round_contrib_points = 2
+	same_job_respawn_delay = 30 MINUTES
 
 	cmode_music = 'sound/music/cmode/garrison/combat_warden.ogg'
 	job_traits = list(TRAIT_OUTDOORSMAN, TRAIT_WOODSMAN, TRAIT_SURVIVAL_EXPERT)
@@ -83,7 +84,7 @@
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve/warden
 	beltr = /obj/item/quiver/arrows
-	beltl = /obj/item/rogueweapon/huntingknife/idagger/steel
+	beltl = /obj/item/rogueweapon/huntingknife/idagger/warden_machete
 	backpack_contents = list(
 		/obj/item/storage/keyring/guard = 1,
 		/obj/item/flashlight/flare/torch/lantern = 1,

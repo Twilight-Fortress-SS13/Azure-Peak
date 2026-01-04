@@ -10,6 +10,8 @@
 
 	var/mob/viewing
 
+/datum/examine_panel/familiar
+
 /datum/examine_panel/New(mob/holder_mob)
 	if(holder_mob)
 		holder = holder_mob
@@ -32,6 +34,64 @@
 		ui = new(user, src, "ExaminePanel")
 		ui.open()
 
+/datum/examine_panel/familiar/ui_data(mob/user) //altered and condensed version used for familiars. sorry
+
+	var/flavor_text
+	var/flavor_text_nsfw //probably breaks if i remove it entirely, just leaving it null
+	var/ooc_notes = ""
+	var/ooc_notes_nsfw
+	var/headshot = ""
+	var/list/img_gallery = list()
+	var/char_name
+	var/song_url
+	var/has_song = FALSE
+	var/is_vet = FALSE
+	var/is_naked = FALSE
+	var/obscured = FALSE
+
+	var/datum/preferences/prefs = holder.client?.prefs
+	var/datum/familiar_prefs/fam_pref = prefs?.familiar_prefs
+
+	flavor_text = fam_pref.familiar_flavortext
+	ooc_notes = fam_pref.familiar_ooc_notes
+	headshot = fam_pref.familiar_headshot_link
+	char_name = fam_pref.familiar_name
+	song_url = prefs.ooc_extra
+	is_vet = viewing.check_agevet()
+	if(!headshot)
+		headshot = "headshot_red.png"
+	
+	if(song_url)
+		has_song = TRUE
+
+	ooc_notes = html_encode(ooc_notes)
+	ooc_notes = parsemarkdown_basic(ooc_notes, hyperlink=TRUE)
+	ooc_notes_nsfw = html_encode(ooc_notes_nsfw)
+	ooc_notes_nsfw = parsemarkdown_basic(ooc_notes_nsfw, hyperlink=TRUE)
+	flavor_text = html_encode(flavor_text)
+	flavor_text = parsemarkdown_basic(flavor_text, hyperlink=TRUE)
+	flavor_text_nsfw = html_encode(flavor_text_nsfw)
+	flavor_text_nsfw = parsemarkdown_basic(flavor_text_nsfw, hyperlink=TRUE)
+
+	var/list/data = list(
+		// Identity
+		"character_name" = obscured ? "Unknown" : char_name,
+		"headshot" = headshot,
+		"obscured" = obscured ? TRUE : FALSE,
+		// Descriptions
+		"flavor_text" = flavor_text,
+		"ooc_notes" = ooc_notes,
+		// Descriptions, but requiring manual input to see
+		"flavor_text_nsfw" = flavor_text_nsfw,
+		"ooc_notes_nsfw" = ooc_notes_nsfw,
+		"img_gallery" = img_gallery,
+		"is_playing" = is_playing,
+		"has_song" = has_song,
+		"is_vet" = is_vet,
+		"is_naked" = is_naked,
+	)
+	return data
+
 /datum/examine_panel/ui_data(mob/user)
 
 	var/flavor_text
@@ -40,6 +100,7 @@
 	var/ooc_notes = ""
 	var/ooc_notes_nsfw
 	var/headshot = ""
+	var/nsfw_headshot = ""
 	var/list/img_gallery = list()
 	var/char_name
 	var/song_url
@@ -60,7 +121,6 @@
 		ooc_notes_nsfw += holder.erpprefs
 		char_name = holder.name
 		song_url = holder.ooc_extra
-		is_vet = holder.check_agevet()
 		if(!obscured)
 			if(vampireplayer && (!SEND_SIGNAL(holder, COMSIG_DISGUISE_STATUS))&& !isnull(holder.vampire_headshot_link)) //vampire with their disguise down and a valid headshot
 				headshot = holder.vampire_headshot_link
@@ -68,6 +128,7 @@
 				headshot = holder.lich_headshot_link
 			else
 				headshot = holder.headshot_link
+			nsfw_headshot += holder.nsfw_headshot_link
 			img_gallery = holder.img_gallery
 		if(!headshot)
 			headshot = "headshot_red.png"
@@ -85,10 +146,10 @@
 			headshot = pref.lich_headshot_link
 		else
 			headshot = pref.headshot_link
+		nsfw_headshot = pref.nsfw_headshot_link
 		img_gallery = pref.img_gallery
 		char_name = pref.real_name
 		song_url = pref.ooc_extra
-		is_vet = viewing.check_agevet()
 		if(!headshot)
 			headshot = "headshot_red.png"
 	
@@ -115,6 +176,7 @@
 		// Descriptions, but requiring manual input to see
 		"flavor_text_nsfw" = flavor_text_nsfw,
 		"ooc_notes_nsfw" = ooc_notes_nsfw,
+		"nsfw_headshot" = nsfw_headshot,
 		"img_gallery" = img_gallery,
 		"is_playing" = is_playing,
 		"has_song" = has_song,
